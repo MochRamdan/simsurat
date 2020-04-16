@@ -10,24 +10,10 @@ class M_Surat extends CI_Model
     parent::__construct();
   }
 
-  public function create($id, $jenis, $judul_kop, $nomor, $tanggal,
-    $perihal, $dari, $kepada, $asal_instansi, $tanggal_masuk)
+  public function create($table, $data)
   {
-    return $this->db->insert(
-      'surat',
-      array(
-        'id_surat' => $id,
-        'id_jenis' => $jenis,
-        'judul_kop' => $judul_kop,
-        'nomor' => $nomor,
-        'tanggal' => $tanggal,
-        'perihal' => $perihal,
-        'dari' => $dari,
-        'kepada' => $kepada,
-        'asal_instansi' => $asal_instansi,
-        'tanggal_masuk' => $tanggal_masuk
-      )
-    );
+    $this->db->insert($table, $data);
+    return $this->db->insert_id();
   }
 
   public function get_all()
@@ -42,11 +28,11 @@ class M_Surat extends CI_Model
 
   public function get_id($id)
   {
-    $this->db->select("surat.*, lokasi.nama as LOKASI, jenis_surat.nama as JENIS");
+    // $this->db->select("surat.*, lokasi.nama as LOKASI, jenis_surat.nama as JENIS");
     $this->db->from("surat");
-    $this->db->join("lokasi", "surat.id_lokasi = lokasi.id_lokasi");
+    // $this->db->join("lokasi", "surat.id_lokasi = lokasi.id_lokasi");
     $this->db->join("jenis_surat", "surat.id_jenis = jenis_surat.id_jenis");
-    $this->db->join("media", "surat.id_media = media.id_media");
+    // $this->db->join("media", "surat.id_media = media.id_media");
     $this->db->where('id_surat', $id);
     return $this->db->get()->result();
   }
@@ -84,5 +70,3 @@ class M_Surat extends CI_Model
     return $this->db->delete('surat');
   }
 }
-
-?>

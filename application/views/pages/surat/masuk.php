@@ -17,19 +17,14 @@
   		<div class="widget-main">
         <div class="row">
           <div class="col-md-6">
-            <div class="form-group">
+            <!-- <input type='hidden' id='kategori_surat' name="kategori_surat" value="masuk" /> -->
+            <!-- <div class="form-group">
               <label class='col-sm-4 control-label no-padding-right' for='id'>ID Surat</label>
               <div class='col-sm-8'>
                 <input type='text' id='id' name="id" placeholder='ID Surat'
-                  class='form-control' value="<?php echo $id; ?>" required="" readonly="" />
+                  class='form-control' value="<//?php echo $id; ?>" required="" readonly="" />
               </div>
-            </div>
-            <div class="form-group">
-              <label class='col-sm-4 control-label no-padding-right' for='kop'>Judul Kop Surat</label>
-              <div class='col-sm-8'>
-                <input type='text' id='kop' name="kop" placeholder='Judul Kop Surat' class='form-control' required="" />
-              </div>
-            </div>
+            </div> -->
             <div class="form-group">
               <label class='col-sm-4 control-label no-padding-right' for='no'>Nomor Surat</label>
               <div class='col-sm-8'>

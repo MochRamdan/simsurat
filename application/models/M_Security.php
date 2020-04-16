@@ -20,12 +20,15 @@ class m_security extends CI_Model
 		}
 	}
 
-  public function gen_ai_id($tabel, $kolom)
-  {
-    $this->db->select_max($kolom, 'id');
-    $data = $this->db->get($tabel)->result();
-    return ($data[0]->id + 1);
-  }
+  // public function gen_ai_id($tabel, $kategori)
+  // {
+  //   $this->db->where('KATEGORI_SURAT', $kategori);
+  //   // $this->db->select_max($kolom, 'id');
+  //   $data = $this->db->get($tabel);
+  //   $count = $data->num_rows();
+  //   return ($count + 1);
+  //   // return ($data[0]->id + 1);
+  // }
 }
 
 ?>

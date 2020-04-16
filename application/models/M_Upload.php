@@ -1,4 +1,5 @@
 <?php
+
 /**
  *
  */
@@ -10,12 +11,11 @@ class M_Upload extends CI_Model
     parent::__construct();
   }
 
-  public function create($id, $surat, $path)
+  public function create($surat, $path)
   {
     return $this->db->insert(
       'upload',
       array(
-        'id_upload' => $id,
         'id_surat' => $surat,
         'path' => $path
       )
@@ -49,4 +49,3 @@ class M_Upload extends CI_Model
     return $this->db->delete('upload');
   }
 }
-?>
