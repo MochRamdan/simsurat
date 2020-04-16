@@ -42,24 +42,21 @@ class M_Surat extends CI_Model
     return $this->db->get_where("surat", $condition)->result();
   }
 
-  public function update($id, $lokasi, $jenis, $media, $judul_kop, $nomor, $tanggal,
-    $perihal, $dari, $kepada, $asal_instansi, $tanggal_masuk)
+  public function update($id, $jenis, $nomor, $tanggal, $perihal, $dari, $kepada, $asal_instansi, $tanggal_masuk, $keterangan)
   {
     $this->db->where('id_surat', $id);
     return $this->db->update(
       'surat',
       array(
-        'id_lokasi' => $lokasi,
         'id_jenis' => $jenis,
-        'id_media' => $media,
-        'judul_kop' => $judul_kop,
         'nomor' => $nomor,
         'tanggal' => $tanggal,
         'perihal' => $perihal,
         'dari' => $dari,
         'kepada' => $kepada,
         'asal_instansi' => $asal_instansi,
-        'tanggal_masuk' => $tanggal_masuk
+        'tanggal_masuk' => $tanggal_masuk,
+        'keterangan' => $keterangan
       )
     );
   }

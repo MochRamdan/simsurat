@@ -20,10 +20,6 @@ class Surat extends CI_Controller
     $data['konten'] = "pages/surat/masuk";
 
     $data['jenis'] = $this->m_jenis->get_all();
-    // $data['lokasi'] = $this->m_lokasi->get_all();
-    // $data['media'] = $this->m_media->get_all();
-
-    // $data['id'] = $this->m_security->gen_ai_id('surat', $kategori);
 
     return $this->load->view('index', $data);
   }
@@ -34,12 +30,7 @@ class Surat extends CI_Controller
     $data['judul'] = "Lihat Arsip Masuk";
     $data['konten'] = "pages/surat/masuk_list";
 
-    // $data['surat'] = $this->m_arsip_masuk->get_custom(array("nip" => $this->session->userdata("nip")));
-
     $data['surat'] = $this->m_arsip_masuk->get_custom(array("kategori_surat" => "masuk"));
-
-    // print_r($data['surat']);
-    // die();
 
     return $this->load->view('index', $data);
   }
@@ -63,12 +54,8 @@ class Surat extends CI_Controller
     $data['konten'] = "pages/surat/masuk_ubah";
 
     $data['jenis'] = $this->m_jenis->get_all();
-    $data['lokasi'] = $this->m_lokasi->get_all();
-    $data['media'] = $this->m_media->get_all();
     $data['surat'] = $this->m_surat->get_id($id);
-    $data['arsip_masuk'] = $this->m_arsip_masuk->get_custom(array("surat.id_surat" => $id));
-    $data['inaktif'] = $this->m_riwayat_inaktif->get_surat($id);
-    $data['retensi'] = $this->m_riwayat_retensi->get_surat($id);
+    // $data['arsip_masuk'] = $this->m_arsip_masuk->get_custom(array("surat.id_surat" => $id));
     $data['upload'] = $this->m_upload->get_surat($id);
 
     return $this->load->view('index', $data);
@@ -109,11 +96,6 @@ class Surat extends CI_Controller
     $data['konten'] = "pages/surat/keluar";
 
     $data['jenis'] = $this->m_jenis->get_all();
-    // $data['lokasi'] = $this->m_lokasi->get_all();
-    // $data['media'] = $this->m_media->get_all();
-
-    // $data['id'] = $this->m_security->gen_ai_id('surat', $kategori);
-    // $data['no'] = $this->m_arsip_keluar->get_no();
 
     return $this->load->view('index', $data);
   }
@@ -281,10 +263,10 @@ class Surat extends CI_Controller
     $this->m_security->check();
     // get values from input control
     $id_surat = $this->input->post('id');
-    $id_lokasi = $this->input->post('lokasi');
+    // $id_lokasi = $this->input->post('lokasi');
     $id_jenis = $this->input->post('jenis');
-    $id_media = $this->input->post('media');
-    $judul_kop = $this->input->post('kop');
+    // $id_media = $this->input->post('media');
+    // $judul_kop = $this->input->post('kop');
     $nomor = $this->input->post('no');
     $tanggal = date("Y-m-d", strtotime($this->input->post('tgl')));
     $perihal = $this->input->post('hal');
@@ -297,33 +279,18 @@ class Surat extends CI_Controller
     // update surat master table --> surat
     $query = $this->m_surat->update(
       $id_surat,
-      $id_lokasi,
       $id_jenis,
-      $id_media,
-      $judul_kop,
       $nomor,
       $tanggal,
       $perihal,
       $dari,
       $kepada,
       $asal_instansi,
-      $tanggal_masuk
+      $tanggal_masuk,
+      $keterangan
     );
+
     if ($query > 0) {
-      // update arsip masuk table
-      $nip = $this->session->userdata('nip');
-      $this->m_arsip_masuk->update_surat($nip, $id_surat, $tanggal, $keterangan);
-
-      // update riwayat retensi table
-      $tgl_retensi = date("Y-m-d", strtotime($this->input->post('retensi')));
-      $retensi = $this->m_retensi->get_jenis($id_jenis)[0]->ID_JADWAL;
-      $this->m_riwayat_retensi->update_surat($id_surat, $retensi, $tgl_retensi);
-
-      // update riwayat inaktif table
-      $tgl_inaktif = date("Y-m-d", strtotime($this->input->post('inaktif')));
-      $inaktif = $this->m_inaktif->get_jenis($id_jenis)[0]->ID_INAKTIF;
-      $this->m_riwayat_inaktif->update_surat($id_surat, $inaktif, $tgl_inaktif, "");
-
       // start upload file surat
       $this->load->library('upload');
       $config['upload_path'] = './uploads/surat/';
@@ -335,10 +302,8 @@ class Surat extends CI_Controller
       if ($this->upload->do_multi_upload('surat')) {
         $uploaded_files = $this->upload->get_multi_upload_data();
         foreach ($uploaded_files as $meta => $file) {
-          $id_upload = $this->m_security->gen_ai_id("upload", "id_upload");
           $path = base_url() . 'uploads/surat/' . $file['file_name'];
-          $this->m_upload->create($id_upload, $id_surat, $path);
-          //echo $id_upload.", ".$id_surat.", ".$path."<br>";
+          $this->m_upload->create($id_surat, $path);
         }
       }
       // end upload file surat
