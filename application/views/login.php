@@ -3,7 +3,7 @@
 	<head>
 		<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
 		<meta charset="utf-8" />
-		<title>KPKNL Bandung :: Login</title>
+		<title>E-Surat :: Login</title>
 
 		<meta name="description" content="User login page" />
 		<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0" />
@@ -18,21 +18,9 @@
 		<!-- ace styles -->
 		<link rel="stylesheet" href="<?php echo base_url().'assets/css/ace.min.css'; ?>" class="ace-main-stylesheet" id="main-ace-style" />
 
-		<!--[if lte IE 9]>
-			<link rel="stylesheet" href="<?php echo base_url().'assets/css/ace-part2.min.css'; ?>" />
-		<![endif]-->
 		<link rel="stylesheet" href="<?php echo base_url().'assets/css/ace-rtl.min.css'; ?>" />
 
-		<!--[if lte IE 9]>
-		  <link rel="stylesheet" href="<?php echo base_url().'assets/css/ace-ie.min.css'; ?>" />
-		<![endif]-->
-
-		<!-- HTML5 shim and Respond.js IE8 support of HTML5 elements and media queries -->
-
-		<!--[if lt IE 9]>
-		<script src="<?php echo base_url().'assets/js/html5shiv.min.js'; ?>"></script>
-		<script src="<?php echo base_url().'assets/js/respond.min.js'; ?>"></script>
-		<![endif]-->
+		
 	</head>
 
 	<body class="login-layout">
@@ -43,7 +31,7 @@
 						<div class="login-container">
 							<div class="center">
 								<h1>
-									<span class="red">KPKNL</span>
+									<span class="red">GEDEBAGE</span>
 									<span class="white" id="id-text2">BANDUNG</span>
 								</h1>
 								<h4 class="blue" id="id-company-text">Aplikasi Administrasi<br>Surat Masuk dan Keluar</h4>
@@ -107,7 +95,7 @@
 											</div>
 
 											<div style="color: white;">
-												&copy; 2015 &nbsp;
+												&copy; 2020 &nbsp;
 											</div>
 										</div>
 									</div><!-- /.widget-body -->

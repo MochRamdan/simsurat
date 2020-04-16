@@ -10,16 +10,14 @@ class M_Surat extends CI_Model
     parent::__construct();
   }
 
-  public function create($id, $lokasi, $jenis, $media, $judul_kop, $nomor, $tanggal,
+  public function create($id, $jenis, $judul_kop, $nomor, $tanggal,
     $perihal, $dari, $kepada, $asal_instansi, $tanggal_masuk)
   {
     return $this->db->insert(
       'surat',
       array(
         'id_surat' => $id,
-        'id_lokasi' => $lokasi,
         'id_jenis' => $jenis,
-        'id_media' => $media,
         'judul_kop' => $judul_kop,
         'nomor' => $nomor,
         'tanggal' => $tanggal,

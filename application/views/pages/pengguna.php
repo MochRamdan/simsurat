@@ -27,7 +27,17 @@
         <td><?php echo $p->NIP; ?></td>
         <td><?php echo $p->NAMA; ?></td>
         <td><?php echo $p->EMAIL; ?></td>
-        <td><?php echo $p->PREVILAGE==1?"Admin":"Normal"; ?></td>
+        <td><!-- <?//php echo $p->PREVILAGE==1?"Admin":"Normal"; ?> -->
+          <?php
+            if ($p->PREVILAGE == 1) {
+              echo "Admin";
+            }elseif ($p->PREVILAGE == 2) {
+              echo "Pimpinan";
+            }else{
+              echo "Normal";
+            }
+          ?>
+        </td>
         <td style="text-align: center;">
           <div class="hidden-sm hidden-xs action-buttons">
 						<a class="blue" href="#modal-lihat" data-toggle="modal" role="button" onclick="lihat(<?php echo $p->ID_PENGGUNA; ?>)">
@@ -38,7 +48,7 @@
 							<i class="ace-icon fa fa-pencil bigger-130"></i>
 						</a>
 
-            <?php if($p->NIP != $this->session->userdata('nip')) { ?>
+            <?php if($p->PREVILAGE != $this->session->userdata('role')) { ?>
 						<a class="red" href="<?php echo base_url().'index.php/pengguna/hapus/'.$p->ID_PENGGUNA; ?>" onclick="return confirm('Anda yakin?');">
 							<i class="ace-icon fa fa-trash-o bigger-130"></i>
 						</a>
@@ -94,8 +104,9 @@
             <div class='col-sm-9'>
               <select id='prev' name='prev' class='col-xs-10 col-sm-9' required>
                 <option>-- Pilih --</option>
-                <option value='0'>Normal</option>
                 <option value='1'>Admin</option>
+                <option value='2'>Pimpinan</option>
+                <option value='3'>Normal</option>
               </select>
             </div>
           </div>

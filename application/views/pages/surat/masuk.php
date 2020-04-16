@@ -103,17 +103,17 @@
             </div>
           </div>
           <div class="col-md-6">
-            <div class="form-group">
+            <!-- <div class="form-group">
               <label class='col-sm-4 control-label no-padding-right' for='media'>Media</label>
               <div class='col-sm-8'>
                 <select id='media' name="media" class='form-control form-control' required="">
                   <option></option>
-                  <?php foreach ($media as $m) {
-                    echo "<option value='".$m->ID_MEDIA."'>".$m->NAMA."</option>";
+                  <?//php foreach ($media as $m) {
+                    //echo "<option value='".$m->ID_MEDIA."'>".$m->NAMA."</option>";
                   } ?>
                 </select>
               </div>
-            </div>
+            </div> -->
             <div class="form-group">
               <label class='col-sm-4 control-label no-padding-right' for='jenis'>Jenis Surat</label>
               <div class='col-sm-8'>
@@ -125,7 +125,7 @@
                 </select>
               </div>
             </div>
-            <div class="form-group">
+            <!-- <div class="form-group">
               <label class='col-sm-4 control-label no-padding-right' for='inaktif'>Jadwal Inaktif</label>
               <div class='col-sm-8'>
                 <input type='text' id='inaktif' name="inaktif" placeholder='DD-MM-YYYY' class='form-control' required="" readonly="" />
@@ -136,18 +136,18 @@
               <div class='col-sm-8'>
                 <input type='text' id='retensi' name="retensi" placeholder='DD-MM-YYYY' class='form-control' required="" readonly="" />
               </div>
-            </div>
-            <div class="form-group">
+            </div> -->
+            <!-- <div class="form-group">
               <label class='col-sm-4 control-label no-padding-right' for='lokasi'>Lokasi Penyimpanan</label>
               <div class='col-sm-8'>
                 <select id='lokasi' name="lokasi" class='form-control form-control' required="">
                   <option></option>
-                  <?php foreach ($lokasi as $l) {
-                    echo "<option value='".$l->ID_LOKASI."'>".$l->NAMA."</option>";
+                  <?//php foreach ($lokasi as $l) {
+                    //echo "<option value='".$l->ID_LOKASI."'>".$l->NAMA."</option>";
                   } ?>
                 </select>
               </div>
-            </div>
+            </div> -->
             <div class="form-group">
               <label class='col-sm-4 control-label no-padding-right' for='ket'>Keterangan</label>
               <div class='col-sm-8'>

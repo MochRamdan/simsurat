@@ -84,8 +84,9 @@ class Pengguna extends CI_Controller
           <label class='col-sm-3 control-label no-padding-right' for='prev'>Hak Akses</label>
           <div class='col-sm-9'>
             <select id='prev' name='prev' class='col-xs-10 col-sm-9' required>
-              <option value='0' ".$this->selected_attr($data[0]->PREVILAGE, 0).">Normal</option>
               <option value='1' ".$this->selected_attr($data[0]->PREVILAGE, 1).">Admin</option>
+              <option value='2' ".$this->selected_attr($data[0]->PREVILAGE, 2).">Pimpinan</option>
+              <option value='3' ".$this->selected_attr($data[0]->PREVILAGE, 3).">Normal</option>
             </select>
           </div>
         </div>

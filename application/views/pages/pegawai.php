@@ -23,7 +23,7 @@
           <div class='form-group'>
             <label class='col-sm-2 control-label no-padding-right' for='nip'>NIP</label>
             <div class='col-sm-5'>
-              <input type='text' id='nip' name='nip' placeholder='NIP' class='col-xs-10 col-sm-9' readonly="" required="" />
+              <input type='text' id='nip' name='nip' placeholder='NIP' class='col-xs-10 col-sm-9'  required="" />
             </div>
           </div>
           <div class='form-group'>
@@ -84,6 +84,12 @@
             </div>
           </div>
           <div class='form-group'>
+            <label class='col-sm-2 control-label no-padding-right' for='jabatan'>Nomor WhatsApp</label>
+            <div class='col-sm-3'>
+              <input type='number' id='nomor' name="nomor" placeholder='WhatsApp' class='col-xs-10 col-sm-12' required="" />
+            </div>
+          </div>
+          <div class='form-group'>
             <label class='col-sm-2 control-label no-padding-right' for='alamat'>Alamat</label>
             <div class='col-sm-6'>
               <textarea name="alamat" id="alamat" placeholder="Alamat" class="col-xs-10 col-sm-12"></textarea>
@@ -122,6 +128,7 @@
         <th>Jenis Kelamin</th>
         <th>Jabatan</th>
         <th>Unit Kerja</th>
+        <th>Whatsapp</th>
         <th>Alamat</th>
         <th>Opsi</th>
       </tr>
@@ -134,6 +141,7 @@
         <td><?php echo $k->JENIS_KELAMIN=='L'?"Laki-laki":"Perempuan"; ?></td>
         <td><?php echo $k->JABATAN; ?></td>
         <td><?php echo $k->UNIT_KERJA; ?></td>
+        <td><?php echo $k->NO_WA; ?></td>
         <td><?php echo $k->ALAMAT; ?></td>
         <td style="text-align: center;">
           <div class="hidden-sm hidden-xs action-buttons">
@@ -151,10 +159,10 @@
   </table>
 </div>
 
-<script type="text/javascript">
+<!-- <script type="text/javascript">
   function gen_id(tgl_l, tgl_p, jk) {
     $.ajax({
-      url: '<?php echo base_url()."index.php/master/gen_id_peg"; ?>',
+      url: '<?//php echo base_url()."index.php/master/gen_id_peg"; ?>',
       type: 'POST',
       data: {'tgl_l': tgl_l, 'tgl_p': tgl_p, 'jk': jk},
       success: function(result) {
@@ -165,7 +173,7 @@
       }
     });
   }
-</script>
+</script> -->
 <script type="text/javascript">
   $(document).ready(function() {
     var tgl_l = $('#tgl_l').val();

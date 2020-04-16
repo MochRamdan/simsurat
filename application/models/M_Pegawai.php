@@ -10,7 +10,7 @@ class M_Pegawai extends CI_Model
     parent::__construct();
   }
 
-  public function create($nip, $unit, $jabatan, $nama, $tgl_l, $jk, $alamat, $tgl_p)
+  public function create($nip, $unit, $jabatan, $no_wa, $nama, $tgl_l, $jk, $alamat, $tgl_p)
   {
     return $this->db->insert(
       'pegawai',
@@ -22,7 +22,8 @@ class M_Pegawai extends CI_Model
         'tanggal_lahir' => $tgl_l,
         'jenis_kelamin' => $jk,
         'alamat' => $alamat,
-        'tanggal_pengangkatan' => $tgl_p
+        'tanggal_pengangkatan' => $tgl_p,
+        'no_wa' => $no_wa
       )
     );
   }
@@ -52,7 +53,7 @@ class M_Pegawai extends CI_Model
     return $this->db->get('pegawai')->result();
   }
 
-  public function update($nip, $unit, $jabatan, $nama, $tgl_l, $jk, $alamat, $tgl_p)
+  public function update($nip, $unit, $jabatan, $no_wa, $nama, $tgl_l, $jk, $alamat, $tgl_p)
   {
     $this->db->where('nip', $nip);
     return $this->db->update(
@@ -64,7 +65,8 @@ class M_Pegawai extends CI_Model
         'tanggal_lahir' => $tgl_l,
         'jenis_kelamin' => $jk,
         'alamat' => $alamat,
-        'tanggal_pengangkatan' => $tgl_p
+        'tanggal_pengangkatan' => $tgl_p,
+        'no_wa' => $no_wa
       )
     );
   }

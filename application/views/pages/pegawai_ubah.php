@@ -90,6 +90,12 @@ function selected_val($val1, $val2) {
             </div>
           </div>
           <div class='form-group'>
+            <label class='col-sm-2 control-label no-padding-right' for='jabatan'>Nomor WhatsApp</label>
+            <div class='col-sm-3'>
+              <input type='number' id='nomor' name="nomor" placeholder='WhatsApp' class='col-xs-10 col-sm-12' required="" value="<?php echo $pegawai[0]->NO_WA; ?>"/>
+            </div>
+          </div>
+          <div class='form-group'>
             <label class='col-sm-2 control-label no-padding-right' for='alamat'>Alamat</label>
             <div class='col-sm-6'>
               <textarea name="alamat" id="alamat" placeholder="Alamat" class="col-xs-10 col-sm-12"><?php echo $pegawai[0]->ALAMAT; ?></textarea>

@@ -3,7 +3,7 @@
 <head>
 	<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
 	<meta charset="utf-8" />
-	<title>KPKNL Bandung :: <?php echo $judul; ?></title>
+	<title>E-Surat :: <?php echo $judul; ?></title>
 
 	<meta name="description" content="overview &amp; stats" />
 	<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0" />
@@ -31,11 +31,11 @@
 
 
 	<!--[if lte IE 9]>
-		<link rel="stylesheet" href="<?php echo base_url().'assets/css/ace-part2.min.css'; ?>" class="ace-main-stylesheet" />
+		<link rel="stylesheet" href="<?// echo base_url().'assets/css/ace-part2.min.css'; ?>" class="ace-main-stylesheet" />
 	<![endif]-->
 
 	<!--[if lte IE 9]>
-	  <link rel="stylesheet" href="<?php echo base_url().'assets/css/ace-ie.min.css'; ?>" />
+	  <link rel="stylesheet" href="<//?php echo base_url().'assets/css/ace-ie.min.css'; ?>" />
 	<![endif]-->
 
 	<!-- inline styles related to this page -->
@@ -46,8 +46,8 @@
 	<!-- HTML5shiv and Respond.js for IE8 to support HTML5 elements and media queries -->
 
 	<!--[if lte IE 8]>
-	<script src="<?php echo base_url().'assets/js/html5shiv.min.js'; ?>"></script>
-	<script src="<?php echo base_url().'assets/js/respond.min.js'; ?>"></script>
+	<script src="<?//php echo base_url().'assets/js/html5shiv.min.js'; ?>"></script>
+	<script src="<?//php echo base_url().'assets/js/respond.min.js'; ?>"></script>
 	<![endif]-->
 
 	<!--[if !IE]> -->
@@ -56,7 +56,7 @@
 	<!-- <![endif]-->
 
 	<!--[if IE]>
-	<script src="<?php echo base_url().'assets/js/jquery.1.11.1.min.js'; ?>"></script>
+	<script src="<?//php echo base_url().'assets/js/jquery.1.11.1.min.js'; ?>"></script>
 	<![endif]-->
 
 	<!--[if !IE]> -->
@@ -179,7 +179,7 @@
 
 	<!--[if IE]>
 	<script type="text/javascript">
-	window.jQuery || document.write("<script src='<?php echo base_url()."assets/js/jquery1x.min.js"; ?>'>"+"<"+"/script>");
+	window.jQuery || document.write("<script src='<?//php echo base_url()."assets/js/jquery1x.min.js"; ?>'>"+"<"+"/script>");
 	</script>
 	<![endif]-->
 	<script type="text/javascript">
@@ -216,7 +216,7 @@
 	<!-- jquery dataTable -->
 	<script src="<?php echo base_url().'assets/js/jquery.dataTables.min.js'; ?>"></script>
 	<script src="<?php echo base_url().'assets/js/jquery.dataTables.bootstrap.min.js'; ?>"></script>
- 	<script src="<?php echo base_url().'assets/js/dataTables.tableTools.min.js'; ?>"></script>
+	<script src="<?php echo base_url().'assets/js/dataTables.tableTools.min.js'; ?>"></script>
 	<script src="<?php echo base_url().'assets/js/dataTables.colVis.min.js'; ?>"></script>
 
 	<!-- ace scripts -->
@@ -232,20 +232,20 @@
 			.dataTable({
 				bAutoWidth: false,
 				"language": {
-            "lengthMenu": "Menampilkan _MENU_ data per halaman",
-            "zeroRecords": "Maaf, tidak ada data yang bisa ditampilkan.",
-            "info": "Halaman _PAGE_ dari _PAGES_",
-            "infoEmpty": "Tidak ada data yang tersedia",
-            "search": "Cari:",
-            "decimal": ",",
-            "thousands": ".",
-            "paginate": {
-                "previous": "<",
-                "next": ">",
-                "first": "<<",
-                "last": ">>"
-            },
-            "infoFiltered": "(Penyaringan dari _MAX_ total data)"
+			"lengthMenu": "Menampilkan _MENU_ data per halaman",
+			"zeroRecords": "Maaf, tidak ada data yang bisa ditampilkan.",
+			"info": "Halaman _PAGE_ dari _PAGES_",
+			"infoEmpty": "Tidak ada data yang tersedia",
+			"search": "Cari:",
+			"decimal": ",",
+			"thousands": ".",
+			"paginate": {
+				"previous": "<",
+				"next": ">",
+				"first": "<<",
+				"last": ">>"
+			},
+			"infoFiltered": "(Penyaringan dari _MAX_ total data)"
 					}
 				//,
 				//"sScrollY": "200px",

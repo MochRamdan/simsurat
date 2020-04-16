@@ -17,8 +17,8 @@ class Surat extends CI_Controller
     $data['konten'] = "pages/surat/masuk";
 
     $data['jenis'] = $this->m_jenis->get_all();
-    $data['lokasi'] = $this->m_lokasi->get_all();
-    $data['media'] = $this->m_media->get_all();
+    // $data['lokasi'] = $this->m_lokasi->get_all();
+    // $data['media'] = $this->m_media->get_all();
 
     $data['id'] = $this->m_security->gen_ai_id('surat', 'id_surat');
 
@@ -225,9 +225,9 @@ class Surat extends CI_Controller
     $this->m_security->check();
     // get values from input control
     $id_surat = $this->input->post('id');
-    $id_lokasi = $this->input->post('lokasi');
+    // $id_lokasi = $this->input->post('lokasi');
     $id_jenis = $this->input->post('jenis');
-    $id_media = $this->input->post('media');
+    // $id_media = $this->input->post('media');
     $judul_kop = $this->input->post('kop');
     $nomor = $this->input->post('no');
     $tanggal = date("Y-m-d", strtotime($this->input->post('tgl')));
@@ -239,7 +239,7 @@ class Surat extends CI_Controller
     $keterangan = $this->input->post('ket');
 
     // input into surat master table --> surat
-    $query = $this->m_surat->create($id_surat, $id_lokasi, $id_jenis, $id_media, $judul_kop, $nomor, $tanggal,
+    $query = $this->m_surat->create($id_surat, $id_jenis, $judul_kop, $nomor, $tanggal,
       $perihal, $dari, $kepada, $asal_instansi, $tanggal_masuk);
     if ($query > 0) {
       // insert into arsip masuk table
@@ -248,16 +248,16 @@ class Surat extends CI_Controller
       $this->m_arsip_masuk->create($id_arsip, $nip, $id_surat, $tanggal, $keterangan);
 
       // insert into riwayat retensi table
-      $id_retensi = $this->m_security->gen_ai_id("riwayat_retensi", "id");
-      $tgl_retensi = date("Y-m-d", strtotime($this->input->post('retensi')));
-      $retensi = $this->m_retensi->get_jenis($id_jenis)[0]->ID_JADWAL;
-      $this->m_riwayat_retensi->create($id_retensi, $id_surat, $retensi, $tgl_retensi, 0);
+      // $id_retensi = $this->m_security->gen_ai_id("riwayat_retensi", "id");
+      // $tgl_retensi = date("Y-m-d", strtotime($this->input->post('retensi')));
+      // $retensi = $this->m_retensi->get_jenis($id_jenis)[0]->ID_JADWAL;
+      // $this->m_riwayat_retensi->create($id_retensi, $id_surat, $retensi, $tgl_retensi, 0);
 
       // insert into riwayat inaktif table
-      $id_inaktif = $this->m_security->gen_ai_id("riwayat_inaktif", "id");
-      $tgl_inaktif = date("Y-m-d", strtotime($this->input->post('inaktif')));
-      $inaktif = $this->m_inaktif->get_jenis($id_jenis)[0]->ID_INAKTIF;
-      $this->m_riwayat_inaktif->create($id_inaktif, $id_surat, $inaktif, $tgl_inaktif, null, 0);
+      // $id_inaktif = $this->m_security->gen_ai_id("riwayat_inaktif", "id");
+      // $tgl_inaktif = date("Y-m-d", strtotime($this->input->post('inaktif')));
+      // $inaktif = $this->m_inaktif->get_jenis($id_jenis)[0]->ID_INAKTIF;
+      // $this->m_riwayat_inaktif->create($id_inaktif, $id_surat, $inaktif, $tgl_inaktif, null, 0);
 
       // insert into disposisi table
       $id_disposisi = $this->m_security->gen_ai_id("disposisi", "id");

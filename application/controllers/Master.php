@@ -393,13 +393,14 @@ class Master extends CI_Controller
     $nip = $this->input->post('nip');
     $unit = $this->input->post('unit');
     $jabatan = $this->input->post('jabatan');
+    $no_wa = $this->input->post('nomor');
     $nama = $this->input->post('nama');
     $tgl_l = date("Y-m-d", strtotime($this->input->post('tgl_l')));
     $jk = $this->input->post('jk');
     $alamat = $this->input->post('alamat');
     $tgl_p = date("Y-m-d", strtotime($this->input->post('tgl_p')));
     if ($act == 'tambah') {
-      $query = $this->m_pegawai->create($nip, $unit, $jabatan, $nama, $tgl_l, $jk, $alamat, $tgl_p);
+      $query = $this->m_pegawai->create($nip, $unit, $jabatan, $no_wa, $nama, $tgl_l, $jk, $alamat, $tgl_p);
       if ($query > 0) {
         $this->session->set_flashdata('pesan', '<b>Berhasil!</b> Data pegawai telah disimpan.');
       } else {
@@ -407,7 +408,7 @@ class Master extends CI_Controller
       }
       redirect('/master/pegawai');
     } else if($act == 'ubah') {
-      $query = $this->m_pegawai->update($nip, $unit, $jabatan, $nama, $tgl_l, $jk, $alamat, $tgl_p);
+      $query = $this->m_pegawai->update($nip, $unit, $jabatan, $no_wa, $nama, $tgl_l, $jk, $alamat, $tgl_p);
       if ($query > 0) {
         $this->session->set_flashdata('pesan', '<b>Berhasil!</b> Data pegawai telah diubah.');
       } else {
@@ -417,6 +418,7 @@ class Master extends CI_Controller
     } else {
       $var = explode('-', $act);
       $id = $var[1];
+
       $query = $this->m_pegawai->delete($id);
       if ($query > 0) {
         $this->session->set_flashdata('pesan', '<b>Berhasil!</b> Data pegawai telah dihapus.');
