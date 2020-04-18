@@ -28,11 +28,8 @@ class M_Surat extends CI_Model
 
   public function get_id($id)
   {
-    // $this->db->select("surat.*, lokasi.nama as LOKASI, jenis_surat.nama as JENIS");
     $this->db->from("surat");
-    // $this->db->join("lokasi", "surat.id_lokasi = lokasi.id_lokasi");
     $this->db->join("jenis_surat", "surat.id_jenis = jenis_surat.id_jenis");
-    // $this->db->join("media", "surat.id_media = media.id_media");
     $this->db->where('id_surat', $id);
     return $this->db->get()->result();
   }

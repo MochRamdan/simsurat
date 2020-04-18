@@ -50,12 +50,8 @@ class M_Arsip_Masuk extends CI_Model
 
   public function get_custom(array $condition = array())
   {
-    // $this->db->select("surat.*, lokasi.nama as LOKASI, jenis_surat.nama as JENIS, arsip_masuk.NIP as NIP, arsip_masuk.KETERANGAN");
     $this->db->from("surat");
-    // $this->db->join("arsip_masuk", "surat.id_surat = arsip_masuk.id_surat");
-    // $this->db->join("lokasi", "surat.id_lokasi = lokasi.id_lokasi");
     $this->db->join("jenis_surat", "surat.id_jenis = jenis_surat.id_jenis");
-    // $this->db->join("media", "surat.id_media = media.id_media");
     $this->db->where($condition);
     return $this->db->get()->result();
   }

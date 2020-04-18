@@ -10,16 +10,27 @@ class M_Disposisi extends CI_Model
     parent::__construct();
   }
 
-  public function create($id, $nip, $surat, $kepada, $tanggal)
+  // public function create($id, $nip, $surat, $kepada, $tanggal)
+  // {
+  //   return $this->db->insert(
+  //     'disposisi',
+  //     array(
+  //       'id' => $id,
+  //       'nip' => $nip,
+  //       'id_surat' => $surat,
+  //       'kepada' => $kepada,
+  //       'tanggal' => $tanggal
+  //     )
+  //   );
+  // }
+
+  public function create($id_surat, $status)
   {
     return $this->db->insert(
       'disposisi',
       array(
-        'id' => $id,
-        'nip' => $nip,
-        'id_surat' => $surat,
-        'kepada' => $kepada,
-        'tanggal' => $tanggal
+        'id_surat' => $id_surat,
+        'status' => $status
       )
     );
   }
@@ -64,32 +75,21 @@ class M_Disposisi extends CI_Model
     return $this->db->get()->result();
   }
 
-  public function get_unprocessed($nip)
+  public function get_unprocessed()
   {
-    return $this->db->query("SELECT
-    	disposisi.ID,
-    	disposisi.NIP,
-    	disposisi.ID_SURAT,
-      surat.DARI,
-    	surat.KEPADA,
-    	Max(disposisi.TANGGAL) AS TANGGAL_DISPOSISI,
-    	surat.JUDUL_KOP,
-    	surat.NOMOR,
-    	surat.TANGGAL AS TANGGAL_SURAT
-    FROM
-    	disposisi
-    INNER JOIN surat ON disposisi.ID_SURAT = surat.ID_SURAT
-    WHERE
-    	disposisi.NIP = '$nip'
-    GROUP BY
-    	disposisi.ID,
-    	disposisi.NIP,
-    	disposisi.ID_SURAT,
-      surat.DARI,
-    	surat.KEPADA,
-      surat.JUDUL_KOP,
-    	surat.NOMOR,
-    	surat.TANGGAL")->result();
+    $this->db->from('disposisi');
+    $this->db->join('surat', 'surat.id_surat = disposisi.id_surat');
+    $this->db->join('upload', 'upload.id_surat = surat.id_surat');
+    $query = $this->db->get()->result();
+    return $query;
+  }
+
+  public function get_disposisi($id){
+    $this->db->from('surat');
+    $this->db->join('disposisi', 'disposisi.id_surat = surat.id_surat');
+    $this->db->join('upload', 'upload.id_surat = surat.id_surat');
+    $query = $this->db->where('disposisi.id', $id);
+    return $query->get()->result();
   }
 
   public function delete($id)

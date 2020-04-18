@@ -55,7 +55,6 @@ class Surat extends CI_Controller
 
     $data['jenis'] = $this->m_jenis->get_all();
     $data['surat'] = $this->m_surat->get_id($id);
-    // $data['arsip_masuk'] = $this->m_arsip_masuk->get_custom(array("surat.id_surat" => $id));
     $data['upload'] = $this->m_upload->get_surat($id);
 
     return $this->load->view('index', $data);
@@ -80,9 +79,6 @@ class Surat extends CI_Controller
 
     $this->m_arsip_masuk->delete_surat($id);
     $this->m_upload->delete_surat($id);
-    $this->m_penggandaan->delete_surat($id);
-    $this->m_riwayat_retensi->delete_surat($id);
-    $this->m_riwayat_inaktif->delete_surat($id);
     $this->m_surat->delete($id);
 
     redirect('surat/masuk_list');
@@ -106,7 +102,7 @@ class Surat extends CI_Controller
     $data['judul'] = "Lihat Arsip Keluar";
     $data['konten'] = "pages/surat/keluar_list";
 
-    $data['surat'] = $this->m_arsip_keluar->get_custom(array("nip" => $this->session->userdata("nip")));
+     $data['surat'] = $this->m_arsip_masuk->get_custom(array("kategori_surat" => "keluar"));
 
     return $this->load->view('index', $data);
   }
@@ -118,12 +114,7 @@ class Surat extends CI_Controller
     $data['konten'] = "pages/surat/keluar_detil";
 
     $data['jenis'] = $this->m_jenis->get_all();
-    $data['lokasi'] = $this->m_lokasi->get_all();
-    $data['media'] = $this->m_media->get_all();
     $data['surat'] = $this->m_surat->get_id($id);
-    $data['arsip'] = $this->m_arsip_keluar->get_custom(array("surat.id_surat" => $id));
-    $data['inaktif'] = $this->m_riwayat_inaktif->get_surat($id);
-    $data['retensi'] = $this->m_riwayat_retensi->get_surat($id);
     $data['upload'] = $this->m_upload->get_surat($id);
 
     return $this->load->view('index', $data);
@@ -136,12 +127,7 @@ class Surat extends CI_Controller
     $data['konten'] = "pages/surat/keluar_ubah";
 
     $data['jenis'] = $this->m_jenis->get_all();
-    $data['lokasi'] = $this->m_lokasi->get_all();
-    $data['media'] = $this->m_media->get_all();
     $data['surat'] = $this->m_surat->get_id($id);
-    $data['arsip'] = $this->m_arsip_keluar->get_custom(array("surat.id_surat" => $id));
-    $data['inaktif'] = $this->m_riwayat_inaktif->get_surat($id);
-    $data['retensi'] = $this->m_riwayat_retensi->get_surat($id);
     $data['upload'] = $this->m_upload->get_surat($id);
 
     return $this->load->view('index', $data);
@@ -166,9 +152,6 @@ class Surat extends CI_Controller
 
     $this->m_arsip_keluar->delete_surat($id);
     $this->m_upload->delete_surat($id);
-    $this->m_penggandaan->delete_surat($id);
-    $this->m_riwayat_retensi->delete_surat($id);
-    $this->m_riwayat_inaktif->delete_surat($id);
     $this->m_surat->delete($id);
 
     redirect('surat/keluar_list');
@@ -237,6 +220,10 @@ class Surat extends CI_Controller
     $last_id = $this->m_surat->create('surat', $data);
 
     if ($last_id > 0) {
+      //insert to disposisi
+      $status = 0;
+      $this->m_disposisi->create($last_id, $status);
+
       // start upload file surat
       $this->load->library('upload');
       $config['upload_path'] = './uploads/surat/';
@@ -263,10 +250,7 @@ class Surat extends CI_Controller
     $this->m_security->check();
     // get values from input control
     $id_surat = $this->input->post('id');
-    // $id_lokasi = $this->input->post('lokasi');
     $id_jenis = $this->input->post('jenis');
-    // $id_media = $this->input->post('media');
-    // $judul_kop = $this->input->post('kop');
     $nomor = $this->input->post('no');
     $tanggal = date("Y-m-d", strtotime($this->input->post('tgl')));
     $perihal = $this->input->post('hal');
@@ -349,7 +333,7 @@ class Surat extends CI_Controller
     $dari = $this->input->post('dari');
     $kepada = $this->input->post('kepada');
     $asal_instansi = $this->input->post('asal');
-    $tanggal_masuk = date("Y-m-d", strtotime($this->input->post('tgl_masuk')));
+    $tanggal_kirim = date("Y-m-d", strtotime($this->input->post('tgl_kirim')));
     $keterangan = $this->input->post('ket');
     $kategori = "keluar";
 
@@ -361,7 +345,7 @@ class Surat extends CI_Controller
       'dari' => $dari,
       'kepada' => $kepada,
       'asal_instansi' => $asal_instansi,
-      'tanggal_masuk' => $tanggal_masuk,
+      'tanggal_masuk' => $tanggal_kirim,
       'keterangan' => $keterangan,
       'kategori_surat' => $kategori
     );
@@ -395,49 +379,31 @@ class Surat extends CI_Controller
     $this->m_security->check();
     // get values from input control
     $id_surat = $this->input->post('id');
-    $id_lokasi = $this->input->post('lokasi');
     $id_jenis = $this->input->post('jenis');
-    $id_media = $this->input->post('media');
-    $judul_kop = $this->input->post('kop');
     $nomor = $this->input->post('no');
     $tanggal = date("Y-m-d", strtotime($this->input->post('tgl')));
     $perihal = $this->input->post('hal');
     $dari = $this->input->post('dari');
     $kepada = $this->input->post('kepada');
     $asal_instansi = $this->input->post('asal');
-    $tanggal_masuk = date("Y-m-d", strtotime($this->input->post('tgl_masuk')));
+    $tanggal_kirim = date("Y-m-d", strtotime($this->input->post('tgl_kirim')));
     $keterangan = $this->input->post('ket');
 
     // update surat master table --> surat
     $query = $this->m_surat->update(
       $id_surat,
-      $id_lokasi,
       $id_jenis,
-      $id_media,
-      $judul_kop,
       $nomor,
       $tanggal,
       $perihal,
       $dari,
       $kepada,
       $asal_instansi,
-      $tanggal_masuk
+      $tanggal_kirim,
+      $keterangan
     );
+
     if ($query > 0) {
-      // update arsip keluar table
-      $nip = $this->session->userdata('nip');
-      $this->m_arsip_keluar->update_surat($nip, $id_surat, $tanggal, $keterangan);
-
-      // update riwayat retensi table
-      $tgl_retensi = date("Y-m-d", strtotime($this->input->post('retensi')));
-      $retensi = $this->m_retensi->get_jenis($id_jenis)[0]->ID_JADWAL;
-      $this->m_riwayat_retensi->update_surat($id_surat, $retensi, $tgl_retensi);
-
-      // update riwayat inaktif table
-      $tgl_inaktif = date("Y-m-d", strtotime($this->input->post('inaktif')));
-      $inaktif = $this->m_inaktif->get_jenis($id_jenis)[0]->ID_INAKTIF;
-      $this->m_riwayat_inaktif->update_surat($id_surat, $inaktif, $tgl_inaktif, "");
-
       // start upload file surat
       $this->load->library('upload');
       $config['upload_path'] = './uploads/surat/';
@@ -449,14 +415,13 @@ class Surat extends CI_Controller
       if ($this->upload->do_multi_upload('surat')) {
         $uploaded_files = $this->upload->get_multi_upload_data();
         foreach ($uploaded_files as $meta => $file) {
-          $id_upload = $this->m_security->gen_ai_id("upload", "id_upload");
           $path = base_url() . 'uploads/surat/' . $file['file_name'];
-          $this->m_upload->create($id_upload, $id_surat, $path);
-          //echo $id_upload.", ".$id_surat.", ".$path."<br>";
+          $this->m_upload->create($id_surat, $path);
         }
       }
       // end upload file surat
     }
+
     redirect('/surat/keluar_list');
   }
 }

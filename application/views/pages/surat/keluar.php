@@ -69,19 +69,18 @@
     						</div>
               </div>
             </div>-->
-          <!--<div class="form-group">
-              <label class='col-sm-4 control-label no-padding-right' for='tgl_masuk'>Tanggal Masuk Surat</label>
-              <div class='col-sm-5'>
-                <div class="input-group">
-    							<input class="form-control date-picker" id="tgl_masuk" name="tgl_masuk" type="text"
-                  data-date-format="dd-mm-yyyy" value="<?php //echo date('d-m-Y') 
-                                                        ?>" />
-    							<span class="input-group-addon">
-    								<i class="fa fa-calendar bigger-110"></i>
-    							</span>
-    						</div>
-              </div>
-            </div>-->
+          <div class="form-group">
+            <label class='col-sm-4 control-label no-padding-right' for='tgl_masuk'>Tanggal Kirim Surat</label>
+            <div class='col-sm-5'>
+              <div class="input-group">
+  							<input class="form-control date-picker" id="tgl_kirim" name="tgl_kirim" type="text"
+                data-date-format="dd-mm-yyyy" value="<?php echo date('d-m-Y') ?>" />
+                <span class="input-group-addon">
+  								<i class="fa fa-calendar bigger-110"></i>
+  							</span>
+  						</div>
+            </div>
+          </div>
           <div class="form-group">
             <label class='col-sm-4 control-label no-padding-right' for='surat'>Unggah Surat</label>
             <div class='col-sm-8'>

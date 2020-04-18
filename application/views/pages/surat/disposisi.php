@@ -7,11 +7,10 @@
     <?php echo $this->session->flashdata('pesan'); ?>
   </div>
 <?php } ?>
-<?php echo form_open_multipart('surat/simpan_masuk', array('class' => 'form-horizontal')); ?>
-<!--<form action="<?php //echo base_url().'index.php/surat/do_upload'; ?>" method="post" class="form-horizontal">-->
+<?php echo form_open_multipart('Disposisi/update_disposisi', array('class' => 'form-horizontal')); ?>
   <div class="widget-box">
     <div class="widget-header widget-header-flat">
-			<h4 class="widget-title">Form Surat Masuk</h4>
+			<h4 class="widget-title">Form Disposisi Surat</h4>
 		</div>
     <div class="widget-body">
   		<div class="widget-main">
@@ -20,15 +19,15 @@
             <div class="form-group">
               <label class='col-sm-4 control-label no-padding-right' for='no'>Nomor Surat</label>
               <div class='col-sm-8'>
-                <input type='text' id='no' name="no" placeholder='Nomor Surat' class='form-control' required="" />
+                <input type='text' id='no' name="no" placeholder='Nomor Surat' class='form-control' required="" readonly="" />
               </div>
             </div>
             <div class="form-group">
-              <label class='col-sm-4 control-label no-padding-right' for='tgl'>Tanggal Surat</label>
+              <label class='col-sm-4 control-label no-padding-right' for='tgl'>Tanggal Disposisi</label>
               <div class='col-sm-5'>
                 <div class="input-group">
     							<input class="form-control date-picker" id="tgl" name="tgl" type="text"
-                  data-date-format="dd-mm-yyyy" value="<?php echo date('d-m-Y') ?>" />
+                  data-date-format="dd-mm-yyyy" value="<?php echo date('d-m-Y') ?>" readonly=""/>
     							<span class="input-group-addon">
     								<i class="fa fa-calendar bigger-110"></i>
     							</span>

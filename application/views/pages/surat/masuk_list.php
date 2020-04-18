@@ -31,22 +31,35 @@
         <td><?php echo $s->KEPADA; ?></td>
         <td><?php echo date("d-m-Y", strtotime($s->TANGGAL)); ?></td>
         <td><?php echo date("d-m-Y", strtotime($s->TANGGAL_MASUK)); ?></td>
-        <td style="text-align: center;width: 10%;">
-          <div class="hidden-sm hidden-xs action-buttons">
-            <a class="blue" href="<?php echo base_url().'index.php/surat/masuk_detil/'.$s->ID_SURAT; ?>">
-              <i class="ace-icon fa fa-eye bigger-130"></i>
-            </a>
 
-            <a class="green" href="<?php echo base_url().'index.php/surat/masuk_ubah/'.$s->ID_SURAT; ?>">
-              <i class="ace-icon fa fa-pencil bigger-130"></i>
-            </a>
+        <?php if($this->session->userdata('role') == 1) { ?>
+          <td style="text-align: center;width: 10%;">
+            <div class="hidden-sm hidden-xs action-buttons">
+              <a class="blue" href="<?php echo base_url().'index.php/surat/masuk_detil/'.$s->ID_SURAT; ?>">
+                <i class="ace-icon fa fa-eye bigger-130"></i>
+              </a>
 
-            <a class="red" href="<?php echo base_url().'index.php/surat/masuk_hapus/'.$s->ID_SURAT; ?>"
-              onclick="return confirm('Anda yakin?');">
-              <i class="ace-icon fa fa-trash-o bigger-130"></i>
-            </a>
-          </div>
-        </td>
+              <a class="green" href="<?php echo base_url().'index.php/surat/masuk_ubah/'.$s->ID_SURAT; ?>">
+                <i class="ace-icon fa fa-pencil bigger-130"></i>
+              </a>
+
+              <a class="red" href="<?php echo base_url().'index.php/surat/masuk_hapus/'.$s->ID_SURAT; ?>"
+                onclick="return confirm('Anda yakin?');">
+                <i class="ace-icon fa fa-trash-o bigger-130"></i>
+              </a>
+            </div>
+          </td>
+        <?php } ?>
+
+        <?php if($this->session->userdata('role') == 2) { ?>
+          <td style="text-align: center;width: 10%;">
+            <div class="hidden-sm hidden-xs action-buttons">
+              <a class="btn btn-primary" href="<?php echo base_url().'index.php/surat/masuk_detil/'.$s->ID_SURAT; ?>">Disposisi
+              </a>
+            </div>
+          </td>
+        <?php } ?>
+        
       </tr>
       <?php $no++; } ?>
     </tbody>

@@ -16,7 +16,27 @@ class Disposisi extends CI_Controller
     $data["judul"] = "Disposisi Arsip";
     $data["konten"] = "pages/surat/disposisi_list";
 
-    $data["surat"] = $this->m_disposisi->get_unprocessed($this->session->userdata("nip"));
+    // $data["surat"] = $this->m_disposisi->get_unprocessed($this->session->userdata("nip"));
+    $data["surat"] = $this->m_disposisi->get_unprocessed();
+
+    // echo "<pre>";
+    // print_r($data);
+    // die();
+
+    return $this->load->view("index", $data);
+  }
+
+  public function get_disposisi($id){
+    $this->m_security->check();
+    $data["judul"] = "Form Disposisi";
+    $data["konten"] = "pages/surat/disposisi";
+
+    $data["disposisi"] = $this->m_disposisi->get_disposisi($id);
+    $data["pengguna"] = $this->m_pengguna->get_all();
+
+    // echo "<pre>";
+    // print_r($data);
+    // die();
 
     return $this->load->view("index", $data);
   }
@@ -27,7 +47,8 @@ class Disposisi extends CI_Controller
     $data["judul"] = "Riwayat Disposisi";
     $data["konten"] = "pages/surat/disposisi_riwayat";
 
-    $data["surat"] = $this->m_disposisi->get_unprocessed($this->session->userdata("nip"));
+    // $data["surat"] = $this->m_disposisi->get_unprocessed($this->session->userdata("nip"));
+    $data["surat"] = $this->m_disposisi->get_unprocessed();
 
     return $this->load->view("index", $data);
   }

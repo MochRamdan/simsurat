@@ -8,7 +8,7 @@
   </div>
 <?php } ?>
 
-<div class="col-md-12">
+<!-- <div class="col-md-12">
   <div class="control-group">
     <label class="control-label bolder blue">Status Disposisi:</label>
 
@@ -26,7 +26,7 @@
   		</label>
   	</div>
   </div>
-</div>
+</div> -->
 
 <div class="col-md-12">
   <div class="clearfix">
@@ -39,34 +39,47 @@
     <thead>
       <tr>
         <th>No.</th>
-        <th>Kop Surat</th>
         <th>Nomor Surat</th>
+        <th>Dari</th>
+        <th>Prihal</th>
         <th>Tanggal Surat</th>
+        <th>Status Disposisi</th>
         <th>Lihat Arsip</th>
-        <th>Opsi</th>
+        <?php if($this->session->userdata('role') == 2) { ?>
+          <th>Opsi</th>
+        <?php } ?>
       </tr>
     </thead>
     <tbody id="tabel-data">
       <?php $no = 1; foreach ($surat as $s) { ?>
         <tr>
           <td style="width: 5%;text-align: right;"><?php echo $no; ?>.</td>
-          <td><?php echo $s->JUDUL_KOP; ?></td>
           <td><?php echo $s->NOMOR; ?></td>
-          <td><?php echo date("d-m-Y", strtotime($s->TANGGAL_SURAT)); ?></td>
+          <td><?php echo $s->DARI; ?></td>
+          <td><?php echo $s->PERIHAL; ?></td>
+          <td><?php echo date("d-m-Y", strtotime($s->TANGGAL)); ?></td>
+          <?php if ($s->STATUS == 0) {
+            echo "<td>"."Belum"."</td>";
+          }else{
+            echo "<td>"."Sudah"."</td>";
+          } ?>
           <td style="text-align: center;width: 10%;">
             <div class="hidden-sm hidden-xs action-buttons">
-              <a class="green" href="#">
+              <a class="green" target="_blank" href="<?php echo $s->PATH; ?>">
                 <i class="ace-icon fa fa-folder-open-o bigger-130"></i>
               </a>
             </div>
           </td>
-          <td style="text-align: center;width: 10%;">
-            <div class="hidden-sm hidden-xs action-buttons">
-              <a class="green" href="#">
-                <i class="ace-icon fa fa-exchange bigger-130"></i>
-              </a>
-            </div>
-          </td>
+
+          <?php if($this->session->userdata('role') == 2) { ?>
+            <td style="text-align: center;width: 10%;">
+              <div class="hidden-sm hidden-xs action-buttons">
+                <a class="btn-xs btn-primary" href="<?php echo base_url('Disposisi/get_disposisi/'.$s->ID)?>">Disposisi</i>
+                </a>
+              </div>
+            </td>
+          <?php } ?>
+
         </tr>
       <?php $no++; } ?>
     </tbody>
