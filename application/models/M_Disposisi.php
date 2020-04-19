@@ -24,29 +24,28 @@ class M_Disposisi extends CI_Model
   //   );
   // }
 
-  public function create($id_surat, $status)
+  public function create($id_surat, $status, $status_baca)
   {
     return $this->db->insert(
       'disposisi',
       array(
         'id_surat' => $id_surat,
-        'status' => $status
+        'status' => $status,
+        'status_baca' => $status_baca
       )
     );
   }
 
-  public function update($id, $nip, $surat, $kepada, $tanggal)
+  public function update($id_disposisi, $data)
   {
+    $this->db->where('id', $id_disposisi);
+    return $this->db->update('disposisi', $data);
+  }
+
+  function update_terima($id, $status_terima){
     $this->db->where('id', $id);
-    return $this->db->update(
-      'disposisi',
-      array(
-        'nip' => $nip,
-        'id_surat' => $surat,
-        'kepada' => $kepada,
-        'tanggal' => $tanggal
-      )
-    );
+    $data = array('status_baca' => $status_terima); 
+    return $this->db->update('disposisi', $data);
   }
 
   public function get_all()
@@ -82,6 +81,14 @@ class M_Disposisi extends CI_Model
     $this->db->join('upload', 'upload.id_surat = surat.id_surat');
     $query = $this->db->get()->result();
     return $query;
+  }
+
+  function get_by_nip($nip){
+    $this->db->from('disposisi');
+    $this->db->join('surat', 'surat.id_surat = disposisi.id_surat');
+    $this->db->join('upload', 'upload.id_surat = surat.id_surat');
+    $query = $this->db->where('disposisi.nip_tujuan', $nip);
+    return $query->get()->result();
   }
 
   public function get_disposisi($id){

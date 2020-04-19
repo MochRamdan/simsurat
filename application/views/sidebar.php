@@ -213,78 +213,8 @@
 				</a>
 				<b class="arrow"></b>
 			</li>
-			<!-- <li class="">
-				<a href="<?//php echo base_url().'index.php/disposisi/riwayat'; ?>">
-					<i class="menu-icon fa fa-caret-right"></i>
-					<span class="menu-text">
-						History Disposisi
-					</span>
-					<b class="arrow"></b>
-				</a>
-				<b class="arrow"></b>
-			</li> -->
 		</ul>
 	</li>
-
-	<!-- <li class="">
-		<a href="#" class="dropdown-toggle">
-			<i class="menu-icon fa fa-trash"></i>
-			<span class="menu-text">
-				Retensi
-			</span>
-			<b class="arrow fa fa-angle-down"></b>
-		</a>
-		<b class="arrow"></b>
-		<ul class="submenu">
-			<li class="">
-				<a href="#" class="dropdown-toggle">
-					<i class="menu-icon fa fa-caret-right"></i>
-					<span class="menu-text">
-						Masa Aktif Surat
-					</span>
-					<b class="arrow fa fa-angle-down"></b>
-				</a>
-				<b class="arrow"></b>
-				<ul class="submenu">
-					<li class="">
-						<a href="<?//php echo base_url().'index.php/retensi/arsip_aktif'; ?>">
-							<i class="menu-icon fa fa-caret-right"></i>
-							Arsip Aktif
-						</a>
-						<b class="arrow"></b>
-					</li>
-					<li class="">
-						<a href="<?//php echo base_url().'index.php/retensi/arsip_inaktif'; ?>">
-							<i class="menu-icon fa fa-caret-right"></i>
-							Arsip Inaktif
-						</a>
-						<b class="arrow"></b>
-					</li>
-				</ul>
-			</li>
-			<li class="">
-				<a href="<?//php echo base_url().'index.php/retensi/retensi_arsip'; ?>">
-					<i class="menu-icon fa fa-caret-right"></i>
-					<span class="menu-text">
-						Retensi Arsip
-					</span>
-					<b class="arrow"></b>
-				</a>
-				<b class="arrow"></b>
-			</li>
-		</ul>
-	</li> -->
-	<!-- <li class="">
-		<a href="<?//php echo base_url().'index.php/laporan'; ?>">
-			<i class="menu-icon glyphicon glyphicon-file"></i>
-			<span class="menu-text">
-				Laporan
-			</span>
-			<b class="arrow"></b>
-		</a>
-
-		<b class="arrow"></b>
-	</li> -->
 	<?php } ?>
 
 	<?php if($this->session->userdata('role') == 3) { ?>
@@ -304,16 +234,6 @@
 					<i class="menu-icon fa fa-caret-right"></i>
 					<span class="menu-text">
 						Disposisi Arsip
-					</span>
-					<b class="arrow"></b>
-				</a>
-				<b class="arrow"></b>
-			</li>
-			<li class="">
-				<a href="<?php echo base_url().'index.php/disposisi/riwayat'; ?>">
-					<i class="menu-icon fa fa-caret-right"></i>
-					<span class="menu-text">
-						History Disposisi
 					</span>
 					<b class="arrow"></b>
 				</a>

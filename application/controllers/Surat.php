@@ -222,7 +222,8 @@ class Surat extends CI_Controller
     if ($last_id > 0) {
       //insert to disposisi
       $status = 0;
-      $this->m_disposisi->create($last_id, $status);
+      $status_baca = 0;
+      $this->m_disposisi->create($last_id, $status, $status_baca);
 
       // start upload file surat
       $this->load->library('upload');

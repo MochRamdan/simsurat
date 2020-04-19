@@ -16,8 +16,13 @@ class Disposisi extends CI_Controller
     $data["judul"] = "Disposisi Arsip";
     $data["konten"] = "pages/surat/disposisi_list";
 
-    // $data["surat"] = $this->m_disposisi->get_unprocessed($this->session->userdata("nip"));
-    $data["surat"] = $this->m_disposisi->get_unprocessed();
+    if ($this->session->userdata('role') == 3) {
+      $nip = $this->session->userdata('nip');
+
+      $data["surat"] = $this->m_disposisi->get_by_nip($nip);
+    }else{
+      $data["surat"] = $this->m_disposisi->get_unprocessed();
+    }
 
     // echo "<pre>";
     // print_r($data);
@@ -32,13 +37,49 @@ class Disposisi extends CI_Controller
     $data["konten"] = "pages/surat/disposisi";
 
     $data["disposisi"] = $this->m_disposisi->get_disposisi($id);
-    $data["pengguna"] = $this->m_pengguna->get_all();
-
-    // echo "<pre>";
-    // print_r($data);
-    // die();
+    $data["pegawai"] = $this->m_pegawai->get_all();
 
     return $this->load->view("index", $data);
+  }
+
+  function update_disposisi(){
+    $this->m_security->check();
+
+    //get session id pengguna
+    $id_pengguna = $this->session->userdata('id_pengguna');
+
+    //get data from view
+    $id_disposisi = $this->input->post('id_disposisi');
+    $id_surat = $this->input->post('id_surat');
+    $tanggal = date("Y-m-d", strtotime($this->input->post('tgl')));
+    $kepada = $this->input->post('kepada');
+    $dari = $id_pengguna;
+    $keterangan = $this->input->post('ket');
+    $status = true;
+
+    $data = array(
+      'ID_SURAT' => $id_surat,
+      'ID_PENGGUNA' => $id_pengguna,
+      'NIP_TUJUAN' => $kepada,
+      'TANGGAL' => $tanggal,
+      'STATUS' => $status,
+      'KETERANGAN_DISPOSISI' => $keterangan
+    );
+
+    $query = $this->m_disposisi->update($id_disposisi, $data);
+    // if ($query > 0) {
+
+    // }
+    redirect('Disposisi');
+  }
+
+  function status_terima($id){
+    $this->m_security->check();
+
+    $status_terima = true;
+    $query = $this->m_disposisi->update_terima($id, $status_terima);
+
+    redirect('Disposisi');
   }
 
   public function riwayat()
