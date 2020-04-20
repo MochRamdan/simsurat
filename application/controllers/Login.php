@@ -6,6 +6,11 @@ defined('BASEPATH') OR exit('No direct script access allowed');
  */
 class Login extends CI_Controller
 {
+  function __construct()
+  {
+    parent::__construct();
+  }
+  
   public function index()
   {
     $this->m_peminjaman->cek_keterlambatan();
@@ -23,6 +28,7 @@ class Login extends CI_Controller
 
     if (count($query) > 0) {
       $pengguna = $this->m_pengguna->get_pengguna($query[0]->ID_PENGGUNA);
+    
       $session_data = array(
         'id_pengguna' => $pengguna[0]->ID_PENGGUNA,
         'nip' => $pengguna[0]->NIP,
@@ -30,6 +36,7 @@ class Login extends CI_Controller
         'email' => $pengguna[0]->EMAIL,
         'role' => $pengguna[0]->PREVILAGE,
       );
+      
       $this->session->set_userdata($session_data);
       redirect('/page');
     } else {
@@ -44,5 +51,3 @@ class Login extends CI_Controller
     redirect('/login');
   }
 }
-
-?>
