@@ -3,7 +3,7 @@
 -- http://www.phpmyadmin.net
 --
 -- Host: 127.0.0.1
--- Generation Time: Apr 16, 2020 at 09:02 AM
+-- Generation Time: Apr 20, 2020 at 03:17 AM
 -- Server version: 10.1.19-MariaDB
 -- PHP Version: 5.6.28
 
@@ -56,11 +56,23 @@ CREATE TABLE `arsip_masuk` (
 
 CREATE TABLE `disposisi` (
   `ID` int(11) NOT NULL,
-  `NIP` varchar(20) DEFAULT NULL,
   `ID_SURAT` int(11) DEFAULT NULL,
-  `KEPADA` varchar(255) DEFAULT NULL,
-  `TANGGAL` date DEFAULT NULL
+  `ID_PENGGUNA` int(11) NOT NULL,
+  `NIP_TUJUAN` varchar(20) DEFAULT NULL,
+  `TANGGAL` date DEFAULT NULL,
+  `STATUS` tinyint(1) NOT NULL,
+  `STATUS_BACA` tinyint(1) NOT NULL,
+  `KETERANGAN_DISPOSISI` text NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+--
+-- Dumping data for table `disposisi`
+--
+
+INSERT INTO `disposisi` (`ID`, `ID_SURAT`, `ID_PENGGUNA`, `NIP_TUJUAN`, `TANGGAL`, `STATUS`, `STATUS_BACA`, `KETERANGAN_DISPOSISI`) VALUES
+(1, 12, 3, '197112061997032004', '2020-04-19', 1, 1, 'mohon kiranya ditindaklanjuti'),
+(2, 14, 3, '197112061997032004', '2020-04-19', 1, 1, 'Segera ditindaklanjuti bu'),
+(3, 15, 3, '197612102010012008', '2020-04-19', 1, 1, 'untuk bu yusi');
 
 -- --------------------------------------------------------
 
@@ -295,15 +307,26 @@ CREATE TABLE `riwayat_retensi` (
 CREATE TABLE `surat` (
   `ID_SURAT` int(11) NOT NULL,
   `ID_JENIS` int(11) DEFAULT NULL,
-  `JUDUL_KOP` varchar(255) DEFAULT NULL,
   `NOMOR` varchar(50) DEFAULT NULL,
   `TANGGAL` date DEFAULT NULL,
   `PERIHAL` varchar(255) DEFAULT NULL,
   `DARI` varchar(100) DEFAULT NULL,
   `KEPADA` varchar(100) DEFAULT NULL,
   `ASAL_INSTANSI` varchar(100) DEFAULT NULL,
-  `TANGGAL_MASUK` date DEFAULT NULL
+  `TANGGAL_MASUK` date DEFAULT NULL,
+  `KETERANGAN` text NOT NULL,
+  `KATEGORI_SURAT` varchar(20) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+--
+-- Dumping data for table `surat`
+--
+
+INSERT INTO `surat` (`ID_SURAT`, `ID_JENIS`, `NOMOR`, `TANGGAL`, `PERIHAL`, `DARI`, `KEPADA`, `ASAL_INSTANSI`, `TANGGAL_MASUK`, `KETERANGAN`, `KATEGORI_SURAT`) VALUES
+(12, 1, 'KP.01.01/029/2020/bappelitbang', '2020-04-18', 'Laporan anggaran', 'Bappelitbang', 'Kecamatan Gedebage', 'Bappelitbang', '2020-04-18', '1', 'masuk'),
+(13, 4, 'KP.01.01/029/2020/bappelitbang', '2020-04-18', 'Laporan anggaran', 'Bappelitbang', 'Kecamatan Gedebage', 'Bappelitbang', '2020-04-18', 'keluar', 'keluar'),
+(14, 4, 'KP.01.01/029/2020/bappelitbang', '2020-04-19', 'Kebutuhan data', 'Pemerintahan Umum', 'Kecamatan Gedebage', 'Pemerintahan Umum', '2020-04-19', 'harus segera ditindak lanjuti', 'masuk'),
+(15, 4, 'KP.01.01/029/2020/dlhk', '2020-04-19', 'Permintaan data', 'DLHK', 'Kecamatan Gedebage', 'DLHK', '2020-04-19', 'ditindaklanjuti', 'masuk');
 
 -- --------------------------------------------------------
 
@@ -344,6 +367,16 @@ CREATE TABLE `upload` (
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 --
+-- Dumping data for table `upload`
+--
+
+INSERT INTO `upload` (`ID_UPLOAD`, `ID_SURAT`, `PATH`) VALUES
+(8, 12, 'http://localhost/simsurat/uploads/surat/kecamatan_6.pdf'),
+(9, 13, 'http://localhost/simsurat/uploads/surat/kecamatan_3.pdf'),
+(10, 14, 'http://localhost/simsurat/uploads/surat/kecamatan_4.pdf'),
+(11, 15, 'http://localhost/simsurat/uploads/surat/kecamatan_5.pdf');
+
+--
 -- Indexes for dumped tables
 --
 
@@ -368,8 +401,7 @@ ALTER TABLE `arsip_masuk`
 --
 ALTER TABLE `disposisi`
   ADD PRIMARY KEY (`ID`),
-  ADD KEY `FK_REFERENCE_15` (`ID_SURAT`),
-  ADD KEY `FK_REFERENCE_27` (`NIP`);
+  ADD KEY `FK_REFERENCE_15` (`ID_SURAT`);
 
 --
 -- Indexes for table `inaktif`
@@ -478,6 +510,35 @@ ALTER TABLE `upload`
   ADD KEY `FK_REFERENCE_4` (`ID_SURAT`);
 
 --
+-- AUTO_INCREMENT for dumped tables
+--
+
+--
+-- AUTO_INCREMENT for table `disposisi`
+--
+ALTER TABLE `disposisi`
+  MODIFY `ID` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
+--
+-- AUTO_INCREMENT for table `jabatan`
+--
+ALTER TABLE `jabatan`
+  MODIFY `ID_JABATAN` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=11;
+--
+-- AUTO_INCREMENT for table `surat`
+--
+ALTER TABLE `surat`
+  MODIFY `ID_SURAT` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=16;
+--
+-- AUTO_INCREMENT for table `unit_kerja`
+--
+ALTER TABLE `unit_kerja`
+  MODIFY `ID_UNIT` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=10;
+--
+-- AUTO_INCREMENT for table `upload`
+--
+ALTER TABLE `upload`
+  MODIFY `ID_UPLOAD` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=12;
+--
 -- Constraints for dumped tables
 --
 
@@ -485,22 +546,13 @@ ALTER TABLE `upload`
 -- Constraints for table `arsip_keluar`
 --
 ALTER TABLE `arsip_keluar`
-  ADD CONSTRAINT `FK_REFERENCE_13` FOREIGN KEY (`ID_SURAT`) REFERENCES `surat` (`ID_SURAT`),
   ADD CONSTRAINT `FK_REFERENCE_26` FOREIGN KEY (`NIP`) REFERENCES `pegawai` (`NIP`);
 
 --
 -- Constraints for table `arsip_masuk`
 --
 ALTER TABLE `arsip_masuk`
-  ADD CONSTRAINT `FK_REFERENCE_11` FOREIGN KEY (`ID_SURAT`) REFERENCES `surat` (`ID_SURAT`),
   ADD CONSTRAINT `FK_REFERENCE_25` FOREIGN KEY (`NIP`) REFERENCES `pegawai` (`NIP`);
-
---
--- Constraints for table `disposisi`
---
-ALTER TABLE `disposisi`
-  ADD CONSTRAINT `FK_REFERENCE_15` FOREIGN KEY (`ID_SURAT`) REFERENCES `surat` (`ID_SURAT`),
-  ADD CONSTRAINT `FK_REFERENCE_27` FOREIGN KEY (`NIP`) REFERENCES `pegawai` (`NIP`);
 
 --
 -- Constraints for table `inaktif`
@@ -509,36 +561,21 @@ ALTER TABLE `inaktif`
   ADD CONSTRAINT `FK_REFERENCE_8` FOREIGN KEY (`ID_JENIS`) REFERENCES `jenis_surat` (`ID_JENIS`);
 
 --
--- Constraints for table `jabatan`
---
-ALTER TABLE `jabatan`
-  ADD CONSTRAINT `FK_JABATAN1` FOREIGN KEY (`ID_KEPALA`) REFERENCES `jabatan` (`ID_JABATAN`) ON DELETE SET NULL ON UPDATE SET NULL;
-
---
 -- Constraints for table `jadwal_retensi`
 --
 ALTER TABLE `jadwal_retensi`
   ADD CONSTRAINT `FK_REFERENCE_9` FOREIGN KEY (`ID_JENIS`) REFERENCES `jenis_surat` (`ID_JENIS`);
 
 --
--- Constraints for table `pegawai`
---
-ALTER TABLE `pegawai`
-  ADD CONSTRAINT `FK_REFERENCE_2` FOREIGN KEY (`ID_UNIT`) REFERENCES `unit_kerja` (`ID_UNIT`) ON DELETE SET NULL ON UPDATE SET NULL,
-  ADD CONSTRAINT `FK_REFERENCE_3` FOREIGN KEY (`ID_JABATAN`) REFERENCES `jabatan` (`ID_JABATAN`) ON DELETE SET NULL ON UPDATE SET NULL;
-
---
 -- Constraints for table `peminjaman`
 --
 ALTER TABLE `peminjaman`
-  ADD CONSTRAINT `FK_REFERENCE_17` FOREIGN KEY (`ID_SURAT`) REFERENCES `surat` (`ID_SURAT`),
   ADD CONSTRAINT `FK_REFERENCE_28` FOREIGN KEY (`NIP`) REFERENCES `pegawai` (`NIP`);
 
 --
 -- Constraints for table `penggandaan`
 --
 ALTER TABLE `penggandaan`
-  ADD CONSTRAINT `FK_REFERENCE_22` FOREIGN KEY (`ID_SURAT`) REFERENCES `surat` (`ID_SURAT`),
   ADD CONSTRAINT `FK_REFERENCE_24` FOREIGN KEY (`NIP`) REFERENCES `pegawai` (`NIP`);
 
 --
@@ -551,14 +588,12 @@ ALTER TABLE `pengguna`
 -- Constraints for table `riwayat_inaktif`
 --
 ALTER TABLE `riwayat_inaktif`
-  ADD CONSTRAINT `FK_REFERENCE_18` FOREIGN KEY (`ID_SURAT`) REFERENCES `surat` (`ID_SURAT`),
   ADD CONSTRAINT `FK_REFERENCE_19` FOREIGN KEY (`ID_INAKTIF`) REFERENCES `inaktif` (`ID_INAKTIF`);
 
 --
 -- Constraints for table `riwayat_retensi`
 --
 ALTER TABLE `riwayat_retensi`
-  ADD CONSTRAINT `FK_REFERENCE_20` FOREIGN KEY (`ID_SURAT`) REFERENCES `surat` (`ID_SURAT`),
   ADD CONSTRAINT `FK_REFERENCE_21` FOREIGN KEY (`ID_JADWAL`) REFERENCES `jadwal_retensi` (`ID_JADWAL`);
 
 --
@@ -566,12 +601,6 @@ ALTER TABLE `riwayat_retensi`
 --
 ALTER TABLE `surat`
   ADD CONSTRAINT `FK_REFERENCE_7` FOREIGN KEY (`ID_JENIS`) REFERENCES `jenis_surat` (`ID_JENIS`);
-
---
--- Constraints for table `upload`
---
-ALTER TABLE `upload`
-  ADD CONSTRAINT `FK_REFERENCE_4` FOREIGN KEY (`ID_SURAT`) REFERENCES `surat` (`ID_SURAT`);
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
 /*!40101 SET CHARACTER_SET_RESULTS=@OLD_CHARACTER_SET_RESULTS */;

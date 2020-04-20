@@ -48,6 +48,16 @@ class M_Disposisi extends CI_Model
     return $this->db->update('disposisi', $data);
   }
 
+  function get_count_nip($where){
+    $query = $this->db->get_where('disposisi', $where);
+    return $query->num_rows();
+  }
+
+  function get_count($where){
+    $query = $this->db->get_where('disposisi', $where);
+    return $query->num_rows();
+  }
+
   public function get_all()
   {
     return $this->db->get('disposisi')->result();

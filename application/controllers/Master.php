@@ -17,7 +17,29 @@ class Master extends CI_Controller
     $data['judul'] = 'Master Jabatan';
     $data['konten'] = 'pages/jabatan';
 
-    $data['id_jabatan'] = $this->m_security->gen_ai_id('jabatan', 'id_jabatan');
+    if ($this->session->userdata('role') == 3) {
+      $nip = $this->session->userdata('nip');
+      $status_baca = false;
+
+      //get count disposisi
+      $where = array(
+        'NIP_TUJUAN' => $nip,
+        'STATUS_BACA' => $status_baca 
+      );
+
+      $data["count_disposisi"] = $this->m_disposisi->get_count_nip($where);
+      $data["message"] = "Surat Belum diterima";
+    }else{
+      //get count disposisi
+      $status = false;
+      $where = array(
+        'STATUS' => $status
+      );
+
+      $data["count_disposisi"] = $this->m_disposisi->get_count($where);
+      $data["message"] = "Surat Belum disposisi";
+    }
+
     $data['jabatan'] = $this->m_jabatan->get_all();
 
     return $this->load->view('index', $data);
@@ -69,8 +91,30 @@ class Master extends CI_Controller
     $data['judul'] = 'Master Unit Kerja';
     $data['konten'] = 'pages/unit_kerja';
 
-    $data['id'] = $this->m_security->gen_ai_id('unit_kerja', 'id_unit');
     $data['unit'] = $this->m_unit->get_all();
+
+    if ($this->session->userdata('role') == 3) {
+      $nip = $this->session->userdata('nip');
+      $status_baca = false;
+
+      //get count disposisi
+      $where = array(
+        'NIP_TUJUAN' => $nip,
+        'STATUS_BACA' => $status_baca 
+      );
+
+      $data["count_disposisi"] = $this->m_disposisi->get_count_nip($where);
+      $data["message"] = "Surat Belum diterima";
+    }else{
+      //get count disposisi
+      $status = false;
+      $where = array(
+        'STATUS' => $status
+      );
+
+      $data["count_disposisi"] = $this->m_disposisi->get_count($where);
+      $data["message"] = "Surat Belum disposisi";
+    }
 
     return $this->load->view('index', $data);
   }

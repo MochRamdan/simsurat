@@ -23,6 +23,7 @@
         <th>Prihal</th>
         <?php if($this->session->userdata('role') == 3){?>
           <th>Keterangan</th>
+          <th>Status</th>
         <?php }else{ ?>
           <th>Tanggal Surat</th>
         <?php } ?>
@@ -43,6 +44,8 @@
           <!-- kondisi untuk pengguna -->
           <?php if($this->session->userdata('role') == 3){?>
             <td><?php echo $s->KETERANGAN_DISPOSISI; ?></td>
+
+            <td><?php echo $s->STATUS_BACA == 1? "Sudah" : "Belum" ; ?></td>
 
             <td style="text-align: center;width: 10%;">
               <div class="hidden-sm hidden-xs action-buttons">

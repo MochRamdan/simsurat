@@ -29,35 +29,11 @@
 	<link rel="stylesheet" href="<?php echo base_url().'assets/css/bootstrap-datetimepicker.min.css'; ?>" />
 	<link rel="stylesheet" href="<?php echo base_url().'assets/css/colorpicker.min.css'; ?>" />
 
-
-	<!--[if lte IE 9]>
-		<link rel="stylesheet" href="<?// echo base_url().'assets/css/ace-part2.min.css'; ?>" class="ace-main-stylesheet" />
-	<![endif]-->
-
-	<!--[if lte IE 9]>
-	  <link rel="stylesheet" href="<//?php echo base_url().'assets/css/ace-ie.min.css'; ?>" />
-	<![endif]-->
-
-	<!-- inline styles related to this page -->
-
 	<!-- ace settings handler -->
 	<script src="<?php echo base_url().'assets/js/ace-extra.min.js'; ?>"></script>
 
-	<!-- HTML5shiv and Respond.js for IE8 to support HTML5 elements and media queries -->
-
-	<!--[if lte IE 8]>
-	<script src="<?//php echo base_url().'assets/js/html5shiv.min.js'; ?>"></script>
-	<script src="<?//php echo base_url().'assets/js/respond.min.js'; ?>"></script>
-	<![endif]-->
-
 	<!--[if !IE]> -->
 	<script src="<?php echo base_url().'assets/js/jquery.2.1.1.min.js'; ?>"></script>
-
-	<!-- <![endif]-->
-
-	<!--[if IE]>
-	<script src="<?//php echo base_url().'assets/js/jquery.1.11.1.min.js'; ?>"></script>
-	<![endif]-->
 
 	<!--[if !IE]> -->
 	<script type="text/javascript">
@@ -92,7 +68,7 @@
 					<li class="blue">
 						<a data-toggle="dropdown" class="dropdown-toggle" href="#">
 							<i class="ace-icon fa fa-bell"></i>
-							<span class="badge badge-important">1</span>
+							<span class="badge badge-important"><?= $count_disposisi; ?></span>
 						</a>
 
 						<ul class="dropdown-menu-right dropdown-navbar dropdown-menu dropdown-caret dropdown-close">
@@ -106,7 +82,7 @@
 									<li>
 										<a href="#">
 											<div class="clearfix">
-												<span class="pull-left">1 Surat masuk</span>
+												<span class="pull-left"><?= $count_disposisi." ".$message; ?></span>
 											</div>
 										</a>
 									</li>

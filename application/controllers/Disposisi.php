@@ -18,10 +18,30 @@ class Disposisi extends CI_Controller
 
     if ($this->session->userdata('role') == 3) {
       $nip = $this->session->userdata('nip');
+      $status_baca = false;
 
       $data["surat"] = $this->m_disposisi->get_by_nip($nip);
+
+      //get count disposisi
+      $where = array(
+        'NIP_TUJUAN' => $nip,
+        'STATUS_BACA' => $status_baca 
+      );
+
+      $data["count_disposisi"] = $this->m_disposisi->get_count_nip($where);
+      $data["message"] = "Surat Belum diterima";
+
     }else{
       $data["surat"] = $this->m_disposisi->get_unprocessed();
+
+      //get count disposisi
+      $status = false;
+      $where = array(
+        'STATUS' => $status
+      );
+
+      $data["count_disposisi"] = $this->m_disposisi->get_count($where);
+      $data["message"] = "Surat Belum disposisi";
     }
 
     // echo "<pre>";
@@ -78,6 +98,8 @@ class Disposisi extends CI_Controller
 
     $status_terima = true;
     $query = $this->m_disposisi->update_terima($id, $status_terima);
+
+    // redirect($this->uri->uri_string());
 
     redirect('Disposisi');
   }

@@ -22,7 +22,7 @@ class m_security extends CI_Model
 
   // public function gen_ai_id($tabel, $kategori)
   // {
-  //   $this->db->where('KATEGORI_SURAT', $kategori);
+  //   $this->db->where($tabel, $kategori);
   //   // $this->db->select_max($kolom, 'id');
   //   $data = $this->db->get($tabel);
   //   $count = $data->num_rows();

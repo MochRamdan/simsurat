@@ -16,29 +16,29 @@
       <div class="widget-body">
         <div class="widget-main">
           <form class="form-horizontal" method="post" action="<?php echo base_url().'index.php/master/jabatan_act/tambah' ?>">
-            <div class="form-group">
+            <!-- <div class="form-group">
               <label class='col-sm-3 control-label no-padding-right' for='id'>ID</label>
               <div class='col-sm-9'>
-                <input type='text' id='id' name="id" placeholder='ID' class='col-xs-10 col-sm-9' value="<?php echo $id_jabatan; ?>" readonly="" required="" />
+                <input type='text' id='id' name="id" placeholder='ID' class='col-xs-10 col-sm-9' value="<?//php echo $id_jabatan; ?>" readonly="" required="" />
               </div>
-            </div>
+            </div> -->
             <div class="form-group">
               <label class='col-sm-3 control-label no-padding-right' for='nama'>Nama</label>
               <div class='col-sm-9'>
                 <input type='text' id='nama' name="nama" placeholder='Nama' class='col-xs-10 col-sm-9' required="" />
               </div>
             </div>
-            <div class="form-group">
+            <!-- <div class="form-group">
               <label class='col-sm-3 control-label no-padding-right' for='kepala'>Kepala</label>
               <div class='col-sm-9'>
                 <select id='kepala' name="kepala" placeholder='Kepala' class='col-xs-10 col-sm-9'>
                   <option></option>
-                  <?php foreach ($jabatan as $j) { ?>
-                    <option value="<?php echo $j->ID_JABATAN ?>"><?php echo $j->NAMA; ?></option>
-                  <?php } ?>
+                  <?//php foreach ($jabatan as $j) { ?>
+                    <option value="<?//php echo $j->ID_JABATAN ?>"><?//php echo $j->NAMA; ?></option>
+                  <?//php } ?>
                 </select>
               </div>
-            </div>
+            </div> -->
             <div class="form-group">
               <label class='col-sm-3 control-label no-padding-right' for='disposisi'>Disposisi</label>
               <div class='col-sm-9'>
@@ -78,7 +78,7 @@
         <tr>
           <th>No.</th>
           <th>Jabatan</th>
-          <th>Kepala</th>
+          <!-- <th>Kepala</th> -->
           <th>Disposisi</th>
           <th>Opsi</th>
         </tr>
@@ -90,7 +90,7 @@
         <tr>
           <td style="text-align: right;width: 10%;"><?php echo $no; ?>.</td>
           <td><?php echo $j->NAMA; ?></td>
-          <td><?php echo empty($j->KEPALA)?"<center>-</center>":$j->KEPALA; ?></td>
+          <!-- <td><?//php echo empty($j->KEPALA)?"<center>-</center>":$j->KEPALA; ?></td> -->
           <td style="text-align: center"><?php echo $j->STATUS_DISPOSISI==1?'<i class="ace-icon fa fa-check"></i>':''; ?></td>
           <td style="text-align: center;width: 20%;">
             <div class="hidden-sm hidden-xs action-buttons">
