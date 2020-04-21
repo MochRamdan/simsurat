@@ -48,40 +48,60 @@ class Laporan extends CI_Controller
 
   public function filter()
   {
-    $laporan = $this->input->post('laporan');
-    $tgl1 = date("Y-m-d", strtotime($this->input->post('tgl_1')));
-    $tgl2 = date("Y-m-d", strtotime($this->input->post('tgl_2')));
+    $laporan = $this->input->post('j_laporan');
+    $tgl1 = date("Y-m-d", strtotime($this->input->post('tgl1')));
+    $tgl2 = date("Y-m-d", strtotime($this->input->post('tgl2')));
 
     switch ($laporan) {
       case 1: $this->surat_masuk($tgl1, $tgl2); break;
       case 2: $this->surat_keluar($tgl1, $tgl2); break;
-      case 3: $this->disposisi($tgl1, $tgl2); break;
-      case 4: $this->peminjaman($tgl1, $tgl2); break;
-      case 5: $this->inaktif($tgl1, $tgl2); break;
-      case 6: $this->retensi($tgl1, $tgl2); break;
+      // case 3: $this->disposisi($tgl1, $tgl2); break;
     }
   }
 
   protected function surat_masuk($tgl1, $tgl2)
   {
-    $this->load->library('pdfgenerator');
-    $data['judul'] = 'Laporan Surat Masuk';
-    $data['subjudul'] = 'Periode: '.date("d-m-Y", $tgl1).' s/d '.date("d-m-Y", $tgl2);
-    $data['arsip'] = $this->m_arsip_masuk->get_all();
-    $html = $this->load->view('report/pdf_template', $data, true);
+    $kategori_surat = "masuk";
 
-    $this->pdfgenerator->generate($html, 'surat_masuk_'.date("d_m_Y"));
+    //array
+    $arr = array(
+      'KATEGORI_SURAT' => $kategori_surat,
+      'TANGGAL_MASUK >=' => $tgl1,
+      'TANGGAL_MASUK <=' => $tgl2
+    );
+    $data = $this->m_surat->get_masuk_by_date($arr);
+
+    //if $data kosong
+    if (empty($data)) {
+      $data = array();
+    }else{
+      $data = $data;
+    }
+
+    echo json_encode($data);
   }
 
   protected function surat_keluar($tgl1, $tgl2)
   {
-    $this->load->library('pdfgenerator');
-    $data['judul'] = 'Laporan Surat Keluar';
-    $data['subjudul'] = 'Periode: '.date("d-m-Y", $tgl1).' s/d '.date("d-m-Y", $tgl2);
-    $data['arsip'] = $this->m_arsip_keluar->get_all();
-    $html = $this->load->view('report/pdf_template', $data, true);
+    $kategori_surat = "keluar";
 
-    $this->pdfgenerator->generate($html, 'surat_keluar_'.date("d_m_Y"));
+    //array
+    $arr = array(
+      'KATEGORI_SURAT' => $kategori_surat,
+      'TANGGAL_MASUK >=' => $tgl1,
+      'TANGGAL_MASUK <=' => $tgl2
+    );
+
+    $data = $this->m_surat->get_masuk_by_date($arr);
+
+    //if $data kosong
+    if (empty($data)) {
+      $data = array();
+    }else{
+      $data = $data;
+    }
+
+    echo json_encode($data);
   }
 
   protected function disposisi($tgl1, $tgl2)
@@ -128,5 +148,3 @@ class Laporan extends CI_Controller
     $this->pdfgenerator->generate($html, 'retensi_'.date("d_m_Y"));
   }
 }
-
-?>

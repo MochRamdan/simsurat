@@ -21,6 +21,29 @@ class Surat extends CI_Controller
 
     $data['jenis'] = $this->m_jenis->get_all();
 
+    if ($this->session->userdata('role') == 3) {
+      $nip = $this->session->userdata('nip');
+      $status_baca = false;
+
+      //get count disposisi
+      $where = array(
+        'NIP_TUJUAN' => $nip,
+        'STATUS_BACA' => $status_baca 
+      );
+
+      $data["count_disposisi"] = $this->m_disposisi->get_count_nip($where);
+      $data["message"] = "Surat Belum diterima";
+    }else{
+      //get count disposisi
+      $status = false;
+      $where = array(
+        'STATUS' => $status
+      );
+
+      $data["count_disposisi"] = $this->m_disposisi->get_count($where);
+      $data["message"] = "Surat Belum disposisi";
+    }
+
     return $this->load->view('index', $data);
   }
 
@@ -31,6 +54,29 @@ class Surat extends CI_Controller
     $data['konten'] = "pages/surat/masuk_list";
 
     $data['surat'] = $this->m_arsip_masuk->get_custom(array("kategori_surat" => "masuk"));
+
+    if ($this->session->userdata('role') == 3) {
+      $nip = $this->session->userdata('nip');
+      $status_baca = false;
+
+      //get count disposisi
+      $where = array(
+        'NIP_TUJUAN' => $nip,
+        'STATUS_BACA' => $status_baca 
+      );
+
+      $data["count_disposisi"] = $this->m_disposisi->get_count_nip($where);
+      $data["message"] = "Surat Belum diterima";
+    }else{
+      //get count disposisi
+      $status = false;
+      $where = array(
+        'STATUS' => $status
+      );
+
+      $data["count_disposisi"] = $this->m_disposisi->get_count($where);
+      $data["message"] = "Surat Belum disposisi";
+    }
 
     return $this->load->view('index', $data);
   }
@@ -44,6 +90,29 @@ class Surat extends CI_Controller
     $data['surat'] = $this->m_surat->get_id($id);
     $data['upload'] = $this->m_upload->get_surat($id);
 
+    if ($this->session->userdata('role') == 3) {
+      $nip = $this->session->userdata('nip');
+      $status_baca = false;
+
+      //get count disposisi
+      $where = array(
+        'NIP_TUJUAN' => $nip,
+        'STATUS_BACA' => $status_baca 
+      );
+
+      $data["count_disposisi"] = $this->m_disposisi->get_count_nip($where);
+      $data["message"] = "Surat Belum diterima";
+    }else{
+      //get count disposisi
+      $status = false;
+      $where = array(
+        'STATUS' => $status
+      );
+
+      $data["count_disposisi"] = $this->m_disposisi->get_count($where);
+      $data["message"] = "Surat Belum disposisi";
+    }
+
     return $this->load->view('index', $data);
   }
 
@@ -56,6 +125,29 @@ class Surat extends CI_Controller
     $data['jenis'] = $this->m_jenis->get_all();
     $data['surat'] = $this->m_surat->get_id($id);
     $data['upload'] = $this->m_upload->get_surat($id);
+
+    if ($this->session->userdata('role') == 3) {
+      $nip = $this->session->userdata('nip');
+      $status_baca = false;
+
+      //get count disposisi
+      $where = array(
+        'NIP_TUJUAN' => $nip,
+        'STATUS_BACA' => $status_baca 
+      );
+
+      $data["count_disposisi"] = $this->m_disposisi->get_count_nip($where);
+      $data["message"] = "Surat Belum diterima";
+    }else{
+      //get count disposisi
+      $status = false;
+      $where = array(
+        'STATUS' => $status
+      );
+
+      $data["count_disposisi"] = $this->m_disposisi->get_count($where);
+      $data["message"] = "Surat Belum disposisi";
+    }
 
     return $this->load->view('index', $data);
   }
@@ -93,6 +185,29 @@ class Surat extends CI_Controller
 
     $data['jenis'] = $this->m_jenis->get_all();
 
+    if ($this->session->userdata('role') == 3) {
+      $nip = $this->session->userdata('nip');
+      $status_baca = false;
+
+      //get count disposisi
+      $where = array(
+        'NIP_TUJUAN' => $nip,
+        'STATUS_BACA' => $status_baca 
+      );
+
+      $data["count_disposisi"] = $this->m_disposisi->get_count_nip($where);
+      $data["message"] = "Surat Belum diterima";
+    }else{
+      //get count disposisi
+      $status = false;
+      $where = array(
+        'STATUS' => $status
+      );
+
+      $data["count_disposisi"] = $this->m_disposisi->get_count($where);
+      $data["message"] = "Surat Belum disposisi";
+    }
+
     return $this->load->view('index', $data);
   }
 
@@ -103,6 +218,29 @@ class Surat extends CI_Controller
     $data['konten'] = "pages/surat/keluar_list";
 
      $data['surat'] = $this->m_arsip_masuk->get_custom(array("kategori_surat" => "keluar"));
+
+     if ($this->session->userdata('role') == 3) {
+      $nip = $this->session->userdata('nip');
+      $status_baca = false;
+
+      //get count disposisi
+      $where = array(
+        'NIP_TUJUAN' => $nip,
+        'STATUS_BACA' => $status_baca 
+      );
+
+      $data["count_disposisi"] = $this->m_disposisi->get_count_nip($where);
+      $data["message"] = "Surat Belum diterima";
+    }else{
+      //get count disposisi
+      $status = false;
+      $where = array(
+        'STATUS' => $status
+      );
+
+      $data["count_disposisi"] = $this->m_disposisi->get_count($where);
+      $data["message"] = "Surat Belum disposisi";
+    }
 
     return $this->load->view('index', $data);
   }
@@ -117,6 +255,29 @@ class Surat extends CI_Controller
     $data['surat'] = $this->m_surat->get_id($id);
     $data['upload'] = $this->m_upload->get_surat($id);
 
+    if ($this->session->userdata('role') == 3) {
+      $nip = $this->session->userdata('nip');
+      $status_baca = false;
+
+      //get count disposisi
+      $where = array(
+        'NIP_TUJUAN' => $nip,
+        'STATUS_BACA' => $status_baca 
+      );
+
+      $data["count_disposisi"] = $this->m_disposisi->get_count_nip($where);
+      $data["message"] = "Surat Belum diterima";
+    }else{
+      //get count disposisi
+      $status = false;
+      $where = array(
+        'STATUS' => $status
+      );
+
+      $data["count_disposisi"] = $this->m_disposisi->get_count($where);
+      $data["message"] = "Surat Belum disposisi";
+    }
+
     return $this->load->view('index', $data);
   }
 
@@ -129,6 +290,29 @@ class Surat extends CI_Controller
     $data['jenis'] = $this->m_jenis->get_all();
     $data['surat'] = $this->m_surat->get_id($id);
     $data['upload'] = $this->m_upload->get_surat($id);
+
+    if ($this->session->userdata('role') == 3) {
+      $nip = $this->session->userdata('nip');
+      $status_baca = false;
+
+      //get count disposisi
+      $where = array(
+        'NIP_TUJUAN' => $nip,
+        'STATUS_BACA' => $status_baca 
+      );
+
+      $data["count_disposisi"] = $this->m_disposisi->get_count_nip($where);
+      $data["message"] = "Surat Belum diterima";
+    }else{
+      //get count disposisi
+      $status = false;
+      $where = array(
+        'STATUS' => $status
+      );
+
+      $data["count_disposisi"] = $this->m_disposisi->get_count($where);
+      $data["message"] = "Surat Belum disposisi";
+    }
 
     return $this->load->view('index', $data);
   }

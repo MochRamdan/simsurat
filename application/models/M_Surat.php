@@ -63,4 +63,11 @@ class M_Surat extends CI_Model
     $this->db->where('id_surat', $id);
     return $this->db->delete('surat');
   }
+
+  public function get_masuk_by_date($data){
+    // $this->db->from('surat');
+    $query = $this->db->get_where('surat', $data);
+    // $query = $this->db->get();
+    return $query->result();
+  }
 }

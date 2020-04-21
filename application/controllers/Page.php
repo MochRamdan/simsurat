@@ -68,6 +68,30 @@ class Page extends CI_Controller
     $data['judul'] = 'Atur Pengguna';
     $data['konten'] = 'pages/pengguna';
     $data['pengguna'] = $this->m_pengguna->get_all();
+
+    if ($this->session->userdata('role') == 3) {
+      $nip = $this->session->userdata('nip');
+      $status_baca = false;
+
+      //get count disposisi
+      $where = array(
+        'NIP_TUJUAN' => $nip,
+        'STATUS_BACA' => $status_baca 
+      );
+
+      $data["count_disposisi"] = $this->m_disposisi->get_count_nip($where);
+      $data["message"] = "Surat Belum diterima";
+    }else{
+      //get count disposisi
+      $status = false;
+      $where = array(
+        'STATUS' => $status
+      );
+
+      $data["count_disposisi"] = $this->m_disposisi->get_count($where);
+      $data["message"] = "Surat Belum disposisi";
+    }
+    
     $this->load->view('index', $data);
   }
 }

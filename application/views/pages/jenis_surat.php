@@ -16,12 +16,12 @@
       <div class="widget-body">
         <div class="widget-main">
           <form class="form-horizontal" method="post" action="<?php echo base_url().'index.php/master/jenis_act/tambah' ?>">
-            <div class="form-group">
+            <!-- <div class="form-group">
               <label class='col-sm-3 control-label no-padding-right' for='id'>ID</label>
               <div class='col-sm-9'>
-                <input type='text' id='id' name="id" placeholder='ID' class='col-xs-10 col-sm-9' value="<?php echo $id; ?>" readonly="" required="" />
+                <input type='text' id='id' name="id" placeholder='ID' class='col-xs-10 col-sm-9' value="<?//php echo $id; ?>" readonly="" required="" />
               </div>
-            </div>
+            </div> -->
             <div class="form-group">
               <label class='col-sm-3 control-label no-padding-right' for='nama'>Nama</label>
               <div class='col-sm-9'>

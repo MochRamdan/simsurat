@@ -161,7 +161,30 @@ class Master extends CI_Controller
     $data['judul'] = 'Master Jenis Surat';
     $data['konten'] = 'pages/jenis_surat';
 
-    $data['id'] = $this->m_security->gen_ai_id('jenis_surat', 'id_jenis');
+    if ($this->session->userdata('role') == 3) {
+      $nip = $this->session->userdata('nip');
+      $status_baca = false;
+
+      //get count disposisi
+      $where = array(
+        'NIP_TUJUAN' => $nip,
+        'STATUS_BACA' => $status_baca 
+      );
+
+      $data["count_disposisi"] = $this->m_disposisi->get_count_nip($where);
+      $data["message"] = "Surat Belum diterima";
+    }else{
+      //get count disposisi
+      $status = false;
+      $where = array(
+        'STATUS' => $status
+      );
+
+      $data["count_disposisi"] = $this->m_disposisi->get_count($where);
+      $data["message"] = "Surat Belum disposisi";
+    }
+
+    // $data['id'] = $this->m_security->gen_ai_id('jenis_surat', 'id_jenis');
     $data['jenis'] = $this->m_jenis->get_all();
 
     return $this->load->view('index', $data);
@@ -171,7 +194,7 @@ class Master extends CI_Controller
   {
     $this->m_security->check();
     if ($act == 'tambah') {
-      $id = $this->input->post('id');
+      // $id = $this->input->post('id');
       $nama = $this->input->post('nama');
       $query = $this->m_jenis->create($id, $nama);
       if ($query > 0) {
@@ -411,7 +434,30 @@ class Master extends CI_Controller
 
     $data['pegawai'] = $this->m_pegawai->get_all();
     $data['unit_kerja'] = $this->m_unit->get_all();
-    $data['jabatan'] = $this->m_jabatan->get_all();
+    $data['jabatan'] = $this->m_jabatan->get_all(); 
+
+    if ($this->session->userdata('role') == 3) {
+      $nip = $this->session->userdata('nip');
+      $status_baca = false;
+
+      //get count disposisi
+      $where = array(
+        'NIP_TUJUAN' => $nip,
+        'STATUS_BACA' => $status_baca 
+      );
+
+      $data["count_disposisi"] = $this->m_disposisi->get_count_nip($where);
+      $data["message"] = "Surat Belum diterima";
+    }else{
+      //get count disposisi
+      $status = false;
+      $where = array(
+        'STATUS' => $status
+      );
+
+      $data["count_disposisi"] = $this->m_disposisi->get_count($where);
+      $data["message"] = "Surat Belum disposisi";
+    }
 
     return $this->load->view('index', $data);
   }
@@ -494,5 +540,3 @@ class Master extends CI_Controller
     echo count($pegawai)>0?$pegawai[0]->NAMA:NULL;
   }
 }
-
-?>
