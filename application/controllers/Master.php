@@ -1,5 +1,5 @@
 <?php
-defined('BASEPATH') OR exit('No direct script access allowed');
+defined('BASEPATH') or exit('No direct script access allowed');
 /**
  *
  */
@@ -24,12 +24,12 @@ class Master extends CI_Controller
       //get count disposisi
       $where = array(
         'NIP_TUJUAN' => $nip,
-        'STATUS_BACA' => $status_baca 
+        'STATUS_BACA' => $status_baca
       );
 
       $data["count_disposisi"] = $this->m_disposisi->get_count_nip($where);
       $data["message"] = "Surat Belum diterima";
-    }else{
+    } else {
       //get count disposisi
       $status = false;
       $where = array(
@@ -51,7 +51,7 @@ class Master extends CI_Controller
     if ($act == 'tambah') {
       $id = $this->input->post('id');
       $nama = $this->input->post('nama');
-      $kepala = $this->input->post('kepala')==''?NULL:$this->input->post('kepala');
+      $kepala = $this->input->post('kepala') == '' ? NULL : $this->input->post('kepala');
       $disposisi = $this->input->post('disposisi');
       $query = $this->m_jabatan->create($id, $nama, $kepala, $disposisi);
       if ($query > 0) {
@@ -60,10 +60,10 @@ class Master extends CI_Controller
         $this->session->set_flashdata('pesan', '<b>Gagal!</b> Data jabatan gagal disimpan.');
       }
       redirect('/master/jabatan');
-    } else if($act == 'ubah') {
+    } else if ($act == 'ubah') {
       $id = $this->input->post('id-u');
       $nama = $this->input->post('nama-u');
-      $kepala = $this->input->post('kepala-u')==''?NULL:$this->input->post('kepala-u');
+      $kepala = $this->input->post('kepala-u') == '' ? NULL : $this->input->post('kepala-u');
       $disposisi = $this->input->post('disposisi-u');
       $query = $this->m_jabatan->update($id, $nama, $kepala, $disposisi);
       if ($query > 0) {
@@ -100,12 +100,12 @@ class Master extends CI_Controller
       //get count disposisi
       $where = array(
         'NIP_TUJUAN' => $nip,
-        'STATUS_BACA' => $status_baca 
+        'STATUS_BACA' => $status_baca
       );
 
       $data["count_disposisi"] = $this->m_disposisi->get_count_nip($where);
       $data["message"] = "Surat Belum diterima";
-    }else{
+    } else {
       //get count disposisi
       $status = false;
       $where = array(
@@ -132,7 +132,7 @@ class Master extends CI_Controller
         $this->session->set_flashdata('pesan', '<b>Gagal!</b> Data unit kerja gagal disimpan.');
       }
       redirect('/master/unit_kerja');
-    } else if($act == 'ubah') {
+    } else if ($act == 'ubah') {
       $id = $this->input->post('id-u');
       $nama = $this->input->post('nama-u');
       $query = $this->m_unit->update($id, $nama);
@@ -168,12 +168,12 @@ class Master extends CI_Controller
       //get count disposisi
       $where = array(
         'NIP_TUJUAN' => $nip,
-        'STATUS_BACA' => $status_baca 
+        'STATUS_BACA' => $status_baca
       );
 
       $data["count_disposisi"] = $this->m_disposisi->get_count_nip($where);
       $data["message"] = "Surat Belum diterima";
-    }else{
+    } else {
       //get count disposisi
       $status = false;
       $where = array(
@@ -203,7 +203,7 @@ class Master extends CI_Controller
         $this->session->set_flashdata('pesan', '<b>Gagal!</b> Data jenis surat gagal disimpan.');
       }
       redirect('/master/jenis_surat');
-    } else if($act == 'ubah') {
+    } else if ($act == 'ubah') {
       $id = $this->input->post('id-u');
       $nama = $this->input->post('nama-u');
       $query = $this->m_jenis->update($id, $nama);
@@ -251,7 +251,7 @@ class Master extends CI_Controller
         $this->session->set_flashdata('pesan', '<b>Gagal!</b> Data lokasi gagal disimpan.');
       }
       redirect('/master/lokasi');
-    } else if($act == 'ubah') {
+    } else if ($act == 'ubah') {
       $id = $this->input->post('id-u');
       $nama = $this->input->post('nama-u');
       $query = $this->m_lokasi->update($id, $nama);
@@ -299,7 +299,7 @@ class Master extends CI_Controller
         $this->session->set_flashdata('pesan', '<b>Gagal!</b> Data media gagal disimpan.');
       }
       redirect('/master/media');
-    } else if($act == 'ubah') {
+    } else if ($act == 'ubah') {
       $id = $this->input->post('id-u');
       $nama = $this->input->post('nama-u');
       $query = $this->m_media->update($id, $nama);
@@ -350,7 +350,7 @@ class Master extends CI_Controller
         $this->session->set_flashdata('pesan', '<b>Gagal!</b> Jadwal retensi gagal disimpan.');
       }
       redirect('/master/retensi');
-    } else if($act == 'ubah') {
+    } else if ($act == 'ubah') {
       $id = $this->input->post('id-u');
       $jenis = $this->input->post('jenis-u');
       $tahun = $this->input->post('tahun-u');
@@ -402,7 +402,7 @@ class Master extends CI_Controller
         $this->session->set_flashdata('pesan', '<b>Gagal!</b> Jadwal inaktif gagal disimpan.');
       }
       redirect('/master/inaktif');
-    } else if($act == 'ubah') {
+    } else if ($act == 'ubah') {
       $id = $this->input->post('id-u');
       $jenis = $this->input->post('jenis-u');
       $tahun = $this->input->post('tahun-u');
@@ -434,7 +434,7 @@ class Master extends CI_Controller
 
     $data['pegawai'] = $this->m_pegawai->get_all();
     $data['unit_kerja'] = $this->m_unit->get_all();
-    $data['jabatan'] = $this->m_jabatan->get_all(); 
+    $data['jabatan'] = $this->m_jabatan->get_all();
 
     if ($this->session->userdata('role') == 3) {
       $nip = $this->session->userdata('nip');
@@ -443,12 +443,12 @@ class Master extends CI_Controller
       //get count disposisi
       $where = array(
         'NIP_TUJUAN' => $nip,
-        'STATUS_BACA' => $status_baca 
+        'STATUS_BACA' => $status_baca
       );
 
       $data["count_disposisi"] = $this->m_disposisi->get_count_nip($where);
       $data["message"] = "Surat Belum diterima";
-    }else{
+    } else {
       //get count disposisi
       $status = false;
       $where = array(
@@ -470,11 +470,14 @@ class Master extends CI_Controller
 
     $tgl_lahir = date('Ymd', strtotime($tgl_l));
     $tgl_pengangkatan = date('Ym', strtotime($tgl_p));
-    $jenis_kelamin = $jk=='L'?1:2;
-    $urut = "000".($this->m_pegawai->get_for_id(
-      date('Y-m-d', strtotime($tgl_l)), date('Y-m-d', strtotime($tgl_p)), $jk) + 1);
-    $seri = substr($urut, strlen($urut)-3, 3);
-    echo $tgl_lahir.$tgl_pengangkatan.$jenis_kelamin.$seri;
+    $jenis_kelamin = $jk == 'L' ? 1 : 2;
+    $urut = "000" . ($this->m_pegawai->get_for_id(
+      date('Y-m-d', strtotime($tgl_l)),
+      date('Y-m-d', strtotime($tgl_p)),
+      $jk
+    ) + 1);
+    $seri = substr($urut, strlen($urut) - 3, 3);
+    echo $tgl_lahir . $tgl_pengangkatan . $jenis_kelamin . $seri;
   }
 
   public function pegawai_act($act)
@@ -497,7 +500,7 @@ class Master extends CI_Controller
         $this->session->set_flashdata('pesan', '<b>Gagal!</b> Data pegawai gagal disimpan.');
       }
       redirect('/master/pegawai');
-    } else if($act == 'ubah') {
+    } else if ($act == 'ubah') {
       $query = $this->m_pegawai->update($nip, $unit, $jabatan, $no_wa, $nama, $tgl_l, $jk, $alamat, $tgl_p);
       if ($query > 0) {
         $this->session->set_flashdata('pesan', '<b>Berhasil!</b> Data pegawai telah diubah.');
@@ -525,6 +528,29 @@ class Master extends CI_Controller
     $data['judul'] = 'Ubah Pegawai';
     $data['konten'] = 'pages/pegawai_ubah';
 
+    if ($this->session->userdata('role') == 3) {
+      $nip = $this->session->userdata('nip');
+      $status_baca = false;
+
+      //get count disposisi
+      $where = array(
+        'NIP_TUJUAN' => $nip,
+        'STATUS_BACA' => $status_baca
+      );
+
+      $data["count_disposisi"] = $this->m_disposisi->get_count_nip($where);
+      $data["message"] = "Surat Belum diterima";
+    } else {
+      //get count disposisi
+      $status = false;
+      $where = array(
+        'STATUS' => $status
+      );
+
+      $data["count_disposisi"] = $this->m_disposisi->get_count($where);
+      $data["message"] = "Surat Belum disposisi";
+    }
+
     $data['pegawai'] = $this->m_pegawai->get_id($nip);
     $data['unit_kerja'] = $this->m_unit->get_all();
     $data['jabatan'] = $this->m_jabatan->get_all();
@@ -537,6 +563,6 @@ class Master extends CI_Controller
     $this->m_security->check();
     $id = $this->input->post("id");
     $pegawai = $this->m_pegawai->get_id($id);
-    echo count($pegawai)>0?$pegawai[0]->NAMA:NULL;
+    echo count($pegawai) > 0 ? $pegawai[0]->NAMA : NULL;
   }
 }

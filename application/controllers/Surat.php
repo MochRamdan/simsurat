@@ -28,12 +28,12 @@ class Surat extends CI_Controller
       //get count disposisi
       $where = array(
         'NIP_TUJUAN' => $nip,
-        'STATUS_BACA' => $status_baca 
+        'STATUS_BACA' => $status_baca
       );
 
       $data["count_disposisi"] = $this->m_disposisi->get_count_nip($where);
       $data["message"] = "Surat Belum diterima";
-    }else{
+    } else {
       //get count disposisi
       $status = false;
       $where = array(
@@ -62,12 +62,12 @@ class Surat extends CI_Controller
       //get count disposisi
       $where = array(
         'NIP_TUJUAN' => $nip,
-        'STATUS_BACA' => $status_baca 
+        'STATUS_BACA' => $status_baca
       );
 
       $data["count_disposisi"] = $this->m_disposisi->get_count_nip($where);
       $data["message"] = "Surat Belum diterima";
-    }else{
+    } else {
       //get count disposisi
       $status = false;
       $where = array(
@@ -97,12 +97,12 @@ class Surat extends CI_Controller
       //get count disposisi
       $where = array(
         'NIP_TUJUAN' => $nip,
-        'STATUS_BACA' => $status_baca 
+        'STATUS_BACA' => $status_baca
       );
 
       $data["count_disposisi"] = $this->m_disposisi->get_count_nip($where);
       $data["message"] = "Surat Belum diterima";
-    }else{
+    } else {
       //get count disposisi
       $status = false;
       $where = array(
@@ -133,12 +133,12 @@ class Surat extends CI_Controller
       //get count disposisi
       $where = array(
         'NIP_TUJUAN' => $nip,
-        'STATUS_BACA' => $status_baca 
+        'STATUS_BACA' => $status_baca
       );
 
       $data["count_disposisi"] = $this->m_disposisi->get_count_nip($where);
       $data["message"] = "Surat Belum diterima";
-    }else{
+    } else {
       //get count disposisi
       $status = false;
       $where = array(
@@ -192,12 +192,12 @@ class Surat extends CI_Controller
       //get count disposisi
       $where = array(
         'NIP_TUJUAN' => $nip,
-        'STATUS_BACA' => $status_baca 
+        'STATUS_BACA' => $status_baca
       );
 
       $data["count_disposisi"] = $this->m_disposisi->get_count_nip($where);
       $data["message"] = "Surat Belum diterima";
-    }else{
+    } else {
       //get count disposisi
       $status = false;
       $where = array(
@@ -217,21 +217,21 @@ class Surat extends CI_Controller
     $data['judul'] = "Lihat Arsip Keluar";
     $data['konten'] = "pages/surat/keluar_list";
 
-     $data['surat'] = $this->m_arsip_masuk->get_custom(array("kategori_surat" => "keluar"));
+    $data['surat'] = $this->m_arsip_masuk->get_custom(array("kategori_surat" => "keluar"));
 
-     if ($this->session->userdata('role') == 3) {
+    if ($this->session->userdata('role') == 3) {
       $nip = $this->session->userdata('nip');
       $status_baca = false;
 
       //get count disposisi
       $where = array(
         'NIP_TUJUAN' => $nip,
-        'STATUS_BACA' => $status_baca 
+        'STATUS_BACA' => $status_baca
       );
 
       $data["count_disposisi"] = $this->m_disposisi->get_count_nip($where);
       $data["message"] = "Surat Belum diterima";
-    }else{
+    } else {
       //get count disposisi
       $status = false;
       $where = array(
@@ -262,12 +262,12 @@ class Surat extends CI_Controller
       //get count disposisi
       $where = array(
         'NIP_TUJUAN' => $nip,
-        'STATUS_BACA' => $status_baca 
+        'STATUS_BACA' => $status_baca
       );
 
       $data["count_disposisi"] = $this->m_disposisi->get_count_nip($where);
       $data["message"] = "Surat Belum diterima";
-    }else{
+    } else {
       //get count disposisi
       $status = false;
       $where = array(
@@ -298,12 +298,12 @@ class Surat extends CI_Controller
       //get count disposisi
       $where = array(
         'NIP_TUJUAN' => $nip,
-        'STATUS_BACA' => $status_baca 
+        'STATUS_BACA' => $status_baca
       );
 
       $data["count_disposisi"] = $this->m_disposisi->get_count_nip($where);
       $data["message"] = "Surat Belum diterima";
-    }else{
+    } else {
       //get count disposisi
       $status = false;
       $where = array(
@@ -412,7 +412,7 @@ class Surat extends CI_Controller
       // start upload file surat
       $this->load->library('upload');
       $config['upload_path'] = './uploads/surat/';
-      $config['allowed_types'] = 'jpg|png|pdf|doc|docx|xsl|xslx';
+      $config['allowed_types'] = 'jpg|jpeg|png|pdf|doc|docx|xsl|xslx';
       //$config['overwrite'] = TRUE;
       $config['max_size'] = 0;
       $this->upload->initialize($config);
@@ -463,7 +463,7 @@ class Surat extends CI_Controller
       // start upload file surat
       $this->load->library('upload');
       $config['upload_path'] = './uploads/surat/';
-      $config['allowed_types'] = 'jpg|png|pdf|doc|docx|xsl|xslx';
+      $config['allowed_types'] = 'jpg|jpeg|png|pdf|doc|docx|xsl|xslx';
       //$config['overwrite'] = FALSE;
       $config['max_size'] = 0;
       $this->upload->initialize($config);
@@ -510,7 +510,7 @@ class Surat extends CI_Controller
   public function simpan_keluar()
   {
     $this->m_security->check();
-    
+
     $id_jenis = $this->input->post('jenis');
     $nomor = $this->input->post('no');
     $tanggal = date("Y-m-d", strtotime($this->input->post('tgl')));
@@ -538,11 +538,11 @@ class Surat extends CI_Controller
     // input into surat master table --> surat
     $last_id = $this->m_surat->create('surat', $data);
 
-    if($last_id > 0){
+    if ($last_id > 0) {
       // start upload file surat
       $this->load->library('upload');
       $config['upload_path'] = './uploads/surat/';
-      $config['allowed_types'] = 'jpg|png|pdf|doc|docx|xsl|xslx';
+      $config['allowed_types'] = 'jpg|jpeg|png|pdf|doc|docx|xsl|xslx';
       //$config['overwrite'] = TRUE;
       $config['max_size'] = 0;
       $this->upload->initialize($config);
@@ -592,7 +592,7 @@ class Surat extends CI_Controller
       // start upload file surat
       $this->load->library('upload');
       $config['upload_path'] = './uploads/surat/';
-      $config['allowed_types'] = 'jpg|png|pdf|doc|docx|xsl|xslx';
+      $config['allowed_types'] = 'jpg|jpeg|png|pdf|doc|docx|xsl|xslx';
       //$config['overwrite'] = FALSE;
       $config['max_size'] = 0;
       $this->upload->initialize($config);

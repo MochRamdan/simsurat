@@ -149,8 +149,8 @@
       <div class="footer-inner">
         <div class="footer-content">
           <span class="bigger-120">
-            <span class="blue bolder">KPKNL</span>
-            Bandung &copy; 2015
+            <span class="blue bolder">GEDEBAGE</span>
+            Bandung &copy; 2020
           </span>
         </div>
       </div>
@@ -161,24 +161,11 @@
     </a>
   </div>
 
-  <!-- basic scripts -->
-
-  <!--[if IE]>
-	<script type="text/javascript">
-	window.jQuery || document.write("<script src='<? //php echo base_url()."assets/js/jquery1x.min.js"; 
-                                                ?>'>"+"<"+"/script>");
-	</script>
-	<![endif]-->
   <script type="text/javascript">
     if ('ontouchstart' in document.documentElement) document.write("<script src='<?php echo base_url() . "assets/js/jquery.mobile.custom.min.js"; ?>'>" + "<" + "/script>");
   </script>
   <script src="<?php echo base_url() . 'assets/js/bootstrap.min.js'; ?>"></script>
 
-  <!-- page specific plugin scripts -->
-
-  <!--[if lte IE 8]>
-	  <script src="assets/js/excanvas.min.js"></script>
-	<![endif]-->
   <script src="<?php echo base_url() . 'assets/js/jquery-ui.custom.min.js'; ?>"></script>
   <script src="<?php echo base_url() . 'assets/js/jquery.ui.touch-punch.min.js'; ?>"></script>
   <script src="<?php echo base_url() . 'assets/js/jquery.easypiechart.min.js'; ?>"></script>
@@ -209,7 +196,7 @@
   <!-- ace scripts -->
   <script src="<?php echo base_url() . 'assets/js/ace-elements.min.js'; ?>"></script>
   <script src="<?php echo base_url() . 'assets/js/ace.min.js'; ?>"></script>
-  
+
   <!-- jQuery print.js -->
   <script src="<?= base_url('assets/js/jQuery.print.js') ?>"></script>
   <!-- setting library untuk DataTables -->
@@ -250,7 +237,7 @@
         });
 
       //tombol tampilkan
-      $('#tombol-show').click(function(e){
+      $('#tombol-show').click(function(e) {
         e.preventDefault();
 
         var j_laporan = $('#laporan').val();
@@ -264,10 +251,14 @@
         $.ajax({
           url: url,
           method: 'post',
-          data: { j_laporan: j_laporan, tgl1: tgl1, tgl2: tgl2 },
+          data: {
+            j_laporan: j_laporan,
+            tgl1: tgl1,
+            tgl2: tgl2
+          },
           dataType: 'json',
           async: false,
-          success: function(respon){
+          success: function(respon) {
             console.log(respon);
             var html = '';
 
@@ -275,7 +266,7 @@
               alert("Data Tidak Ditemukan");
             }
 
-            $.each(respon, function(i, v){
+            $.each(respon, function(i, v) {
               // console.log(v.username);
               html += '<tr>' +
                 '<td>' + v.NOMOR + '</td>' +
@@ -288,14 +279,14 @@
             });
             $('#show_data').html(html);
           },
-          error: function(){
+          error: function() {
             alert('Could not get data');
           }
         })
       });
 
       //print
-      $("#print").click(function(e){
+      $("#print").click(function(e) {
         e.preventDefault();
         $.print("#dynamic-table");
       })

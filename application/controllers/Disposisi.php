@@ -44,10 +44,6 @@ class Disposisi extends CI_Controller
       $data["message"] = "Surat Belum disposisi";
     }
 
-    // echo "<pre>";
-    // print_r($data);
-    // die();
-
     return $this->load->view("index", $data);
   }
 
@@ -58,6 +54,29 @@ class Disposisi extends CI_Controller
 
     $data["disposisi"] = $this->m_disposisi->get_disposisi($id);
     $data["pegawai"] = $this->m_pegawai->get_all();
+
+    if ($this->session->userdata('role') == 3) {
+      $nip = $this->session->userdata('nip');
+      $status_baca = false;
+
+      //get count disposisi
+      $where = array(
+        'NIP_TUJUAN' => $nip,
+        'STATUS_BACA' => $status_baca
+      );
+
+      $data["count_disposisi"] = $this->m_disposisi->get_count_nip($where);
+      $data["message"] = "Surat Belum diterima";
+    } else {
+      //get count disposisi
+      $status = false;
+      $where = array(
+        'STATUS' => $status
+      );
+
+      $data["count_disposisi"] = $this->m_disposisi->get_count($where);
+      $data["message"] = "Surat Belum disposisi";
+    }
 
     return $this->load->view("index", $data);
   }
