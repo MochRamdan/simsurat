@@ -147,4 +147,8 @@ class Laporan extends CI_Controller
 
     $this->pdfgenerator->generate($html, 'retensi_'.date("d_m_Y"));
   }
+
+  public function download(){
+    force_download('assets/files/BUKU PANDUAN.pdf', NULL);
+  }
 }

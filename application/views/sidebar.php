@@ -179,6 +179,17 @@
       <b class="arrow"></b>
     </li>
 
+    <li class="">
+      <a href="<?php echo base_url() . 'Laporan/download'; ?>">
+        <i class="menu-icon glyphicon glyphicon-download"></i>
+        <span class="menu-text">
+          Unduh Panduan
+        </span>
+        <b class="arrow"></b>
+      </a>
+      <b class="arrow"></b>
+    </li>
+
   <?php } ?>
 
   <?php if ($this->session->userdata('role') == 2) { ?>
@@ -205,6 +216,16 @@
         </li>
       </ul>
     </li>
+    <li class="">
+      <a href="<?php echo base_url() . 'Laporan/download'; ?>">
+        <i class="menu-icon glyphicon glyphicon-download"></i>
+        <span class="menu-text">
+          Unduh Panduan
+        </span>
+        <b class="arrow"></b>
+      </a>
+      <b class="arrow"></b>
+    </li>
   <?php } ?>
 
   <?php if ($this->session->userdata('role') == 3) { ?>
@@ -230,6 +251,16 @@
           <b class="arrow"></b>
         </li>
       </ul>
+    </li>
+    <li class="">
+      <a href="<?php echo base_url() . 'Laporan/download'; ?>">
+        <i class="menu-icon glyphicon glyphicon-download"></i>
+        <span class="menu-text">
+          Unduh Panduan
+        </span>
+        <b class="arrow"></b>
+      </a>
+      <b class="arrow"></b>
     </li>
 
   <?php } ?>

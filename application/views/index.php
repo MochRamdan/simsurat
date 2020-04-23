@@ -62,7 +62,7 @@
         <a href="index.php" class="navbar-brand">
           <small>
             <i class="fa fa-envelope"></i>
-            Aplikasi Administrasi Surat Masuk dan Keluar
+            Aplikasi Administrasi Surat Digital Gedebage
           </small>
         </a>
       </div>
