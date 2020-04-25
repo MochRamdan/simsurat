@@ -24,29 +24,30 @@
 
 </head>
 
-<body class="login-layout">
+<body class="login-layout" style="background-image: url('assets/img/undraw_message_sent.svg'); background-repeat: no-repeat; width: 100%; height: auto; position:relative;">
+  <!-- <img src="<?//= base_url('assets/img/undraw_message_sent.svg')?>"></img> -->
   <div class="main-container">
     <div class="main-content">
       <div class="row">
-        <div class="col-sm-10 col-sm-offset-1">
+        <div class="col-lg-6 col-lg-offset-6">
           <div class="login-container">
-            <div class="center">
+            <!-- <div class="center">
               <h1>
                 <span class="red">GEDEBAGE</span>
                 <span class="white" id="id-text2">BANDUNG</span>
               </h1>
-              <h4 class="blue" id="id-company-text">Aplikasi Administrasi<br>Surat Masuk dan Keluar</h4>
-            </div>
+              <h4 class="blue" id="id-company-text">APD LOGIN</h4>
+            </div> -->
 
             <div class="space-6"></div>
 
             <div class="position-relative">
               <div id="login-box" class="login-box visible widget-box no-border">
                 <div class="widget-body">
-                  <div class="widget-main">
+                  <div class="widget-main" style="background: #fff;">
                     <h4 class="header blue lighter bigger">
-                      <i class="ace-icon fa fa-user green"></i>
-                      Masukkan NIK dan Password
+                      <!-- <i class="ace-icon fa fa-user green"></i> -->
+                      Masukan Nip dan Password
                     </h4>
 
                     <div class="space-6"></div>
@@ -90,7 +91,7 @@
                     </form>
                   </div><!-- /.widget-main -->
 
-                  <div class="toolbar clearfix">
+                  <!-- <div class="toolbar clearfix">
                     <div>
                       &nbsp;
                     </div>
@@ -98,12 +99,23 @@
                     <div style="color: white;">
                       &copy; 2020 &nbsp;
                     </div>
-                  </div>
+                  </div> -->
+
                 </div><!-- /.widget-body -->
               </div><!-- /.login-box -->
             </div><!-- /.position-relative -->
           </div>
         </div><!-- /.col -->
+
+        <div class="col-lg-6 col-lg-offset-6">
+          <div class="login-container">
+            <div class="position-relative">
+              <h5><b>Aplikasi Persuratan Digital (APD) Gedebage</b></h5>
+              <p>Aplikasi ini digunakan untuk manajemen surat masuk dan keluar berbasis digital yang digunakan di Kecamatan Gedebage</p>
+            </div><!-- /.position-relative -->
+          </div>
+        </div><!-- /.col -->
+
       </div><!-- /.row -->
     </div><!-- /.main-content -->
   </div><!-- /.main-container -->
