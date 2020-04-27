@@ -5,3 +5,4 @@
   </button>
   Selamat datang!
 </div>
+<img src="<?= base_url('assets/img/undraw_newsletter.svg'); ?>" class="img-responsive center-block" alt="Responsive image">

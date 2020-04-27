@@ -24,12 +24,16 @@
 
 </head>
 
-<body class="login-layout" style="background-image: url('assets/img/undraw_message_sent.svg'); background-repeat: no-repeat; width: 100%; height: auto; position:relative;">
+<body class="login-layout">
   <!-- <img src="<?//= base_url('assets/img/undraw_message_sent.svg')?>"></img> -->
   <div class="main-container">
+    <!-- <img src="<?//= base_url('assets/img/undraw_message_sent.svg'); ?>" class="img-responsive center-block" alt="Responsive image" style="position: fixed;"> -->
     <div class="main-content">
       <div class="row">
-        <div class="col-lg-6 col-lg-offset-6">
+        <div class="col-lg-6 col-md-6">
+          <img src="<?= base_url('assets/img/undraw_message_sent.svg'); ?>" class="img-responsive center-block" alt="Responsive image" style="position: fixed; width: 50%; height: auto;">
+        </div>
+        <div class="col-lg-6 col-md-12">
           <div class="login-container">
             <!-- <div class="center">
               <h1>

@@ -4,7 +4,7 @@
 <head>
   <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
   <meta charset="utf-8" />
-  <title>E-Surat :: <?php echo $judul; ?></title>
+  <title>APD :: <?php echo $judul; ?></title>
 
   <meta name="description" content="overview &amp; stats" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0" />
@@ -62,7 +62,7 @@
         <a href="index.php" class="navbar-brand">
           <small>
             <i class="fa fa-envelope"></i>
-            Aplikasi Administrasi Surat Digital Gedebage
+            APD GEDEBAGE
           </small>
         </a>
       </div>
@@ -149,8 +149,8 @@
       <div class="footer-inner">
         <div class="footer-content">
           <span class="bigger-120">
-            <span class="blue bolder">GEDEBAGE</span>
-            Bandung &copy; 2020
+            <span class="blue bolder">APD</span>
+            GEDEBAGE &copy; 2020
           </span>
         </div>
       </div>
